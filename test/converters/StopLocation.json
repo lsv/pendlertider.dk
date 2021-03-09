@@ -1,0 +1,315 @@
+{
+  "LocationList": {
+  "noNamespaceSchemaLocation": "http://webapp.rejseplanen.dk/xml/rest/hafasRestLocation.xsd",
+  "StopLocation": [
+  {
+  "name": "Østerport St.",
+  "x": "12587784",
+  "y": "55692498",
+  "id": "008600650"
+  },
+  {
+    "name": "Øster Højst Skole",
+    "x": "9036236",
+    "y": "55000005",
+    "id": "521000701"
+    },
+  {
+  "name": "Østerport St. (Metro)",
+  "x": "12585348",
+  "y": "55693217",
+  "id": "008603334"
+  },
+  {
+  "name": "Østerport St. (Oslo Plads)",
+  "x": "12586984",
+  "y": "55692067",
+  "id": "000001525"
+  },
+  {
+  "name": "Østerport St. (Folke Bernadottes Allé)",
+  "x": "12589177",
+  "y": "55692049",
+  "id": "000027516"
+  },
+  {
+  "name": "Østerport (Østerbro / Aalborg)",
+  "x": "9945728",
+  "y": "57045437",
+  "id": "851212902"
+  },
+  {
+  "name": "Ikast/Østerport (Ikast-Brande Kom)",
+  "x": "9157006",
+  "y": "56139460",
+  "id": "663010003"
+  },
+  {
+  "name": "Østerbjerg St.",
+  "x": "11914303",
+  "y": "55977690",
+  "id": "860174102"
+  },
+  {
+  "name": "Øster Toreby St.",
+  "x": "11836366",
+  "y": "54759903",
+  "id": "008602604"
+  },
+  {
+  "name": "Østerbjerg St. (togbus) (Torupvejen)",
+  "x": "11912901",
+  "y": "55976072",
+  "id": "000053784"
+  },
+  {
+  "name": "Hadsten St./Østergade",
+  "x": "10048052",
+  "y": "56327280",
+  "id": "709000709"
+  },
+  {
+  "name": "Østerparken (Skolevej)",
+  "x": "12302637",
+  "y": "55645134",
+  "id": "000002640"
+  },
+  {
+  "name": "Trianglen St. (Østerbrogade)",
+  "x": "12577824",
+  "y": "55699339",
+  "id": "000001973"
+  },
+  {
+  "name": "Svanemøllen St. (Østerbrogade)",
+  "x": "12577518",
+  "y": "55715277",
+  "id": "000001520"
+  },
+  {
+  "name": "Roskilde St., Sygehuset (Ny Østergade)",
+  "x": "12088487",
+  "y": "55637772",
+  "id": "000010044"
+  },
+  {
+  "name": "Poul Henningsens Plads St. (Østerbrogade)",
+  "x": "12577338",
+  "y": "55708454",
+  "id": "000001522"
+  },
+  {
+  "name": "Øster Terp (Løgumkloster)",
+  "x": "9069424",
+  "y": "55070723",
+  "id": "521002002"
+  },
+  {
+  "name": "St. Darum, Gammel Darumvej v Østertoften (Bramming",
+  "x": "8654239",
+  "y": "55423712",
+  "id": "557220412"
+  },
+  {
+  "name": "Vesterport St.",
+  "x": "12562083",
+  "y": "55676012",
+  "id": "008600645"
+  },
+  {
+  "name": "Østervej v Hjortvad Kirkevej (Ribe)",
+  "x": "8878646",
+  "y": "55386505",
+  "id": "571510209"
+  },
+  {
+  "name": "Brøndbyøster St.",
+  "x": "12440208",
+  "y": "55665072",
+  "id": "008600679"
+  },
+  {
+  "name": "Vesterport St. (Hammerichsgade)",
+  "x": "12563072",
+  "y": "55676030",
+  "id": "000001295"
+  },
+  {
+  "name": "Vesterport St. (Ved Vesterport)",
+  "x": "12561140",
+  "y": "55675005",
+  "id": "000001646"
+  },
+  {
+  "name": "Vesterport St., Kampmannsgade (Kampmannsgade)",
+  "x": "12561562",
+  "y": "55677630",
+  "id": "000001164"
+  },
+  {
+  "name": "Vesterport St. (Vester Farimagsgade)",
+  "x": "12562533",
+  "y": "55677962",
+  "id": "000053666"
+  },
+  {
+  "name": "Østermarksvej",
+  "x": "10148183",
+  "y": "57208223",
+  "id": "807100232"
+  },
+  {
+  "name": "Øster Snogbæk",
+  "x": "9715299",
+  "y": "54974691",
+  "id": "533000709"
+  },
+  {
+  "name": "Øster Nykirke",
+  "x": "9374014",
+  "y": "55884418",
+  "id": "611613009"
+  },
+  {
+  "name": "Øster Sottrup",
+  "x": "9719982",
+  "y": "54951859",
+  "id": "533000509"
+  },
+  {
+  "name": "Øster Torsted",
+  "x": "9224245",
+  "y": "55607954",
+  "id": "605531409"
+  },
+  {
+  "name": "Østerby Torv",
+  "x": "12277566",
+  "y": "55639075",
+  "id": "000002642"
+  },
+  {
+  "name": "Øster Toreby",
+  "x": "11827575",
+  "y": "54770151",
+  "id": "008622604"
+  },
+  {
+  "name": "Østerbæksvej",
+  "x": "10416457",
+  "y": "55393804",
+  "id": "008608726"
+  },
+  {
+  "name": "Øster Dørkenvej",
+  "x": "9275492",
+  "y": "55879923",
+  "id": "611606611"
+  },
+  {
+  "name": "Østersøvej",
+  "x": "11926672",
+  "y": "54757764",
+  "id": "000046477"
+  },
+  {
+  "name": "Øster Gejl",
+  "x": "9398779",
+  "y": "54888089",
+  "id": "503002401"
+  },
+  {
+  "name": "Østervold (Varde)",
+  "x": "8483246",
+  "y": "55623614",
+  "id": "573806802"
+  },
+  {
+  "name": "Øster Højst Skole",
+  "x": "9036236",
+  "y": "55000005",
+  "id": "521000701"
+  },
+  {
+  "name": "Østerholm (Vejen)",
+  "x": "9080903",
+  "y": "55545902",
+  "id": "575682109"
+  },
+  {
+  "name": "Østervang (Orevej)",
+  "x": "12054130",
+  "y": "54885815",
+  "id": "000041732"
+  },
+  {
+  "name": "Østertorv (Skive kom)",
+  "x": "9031633",
+  "y": "56564757",
+  "id": "779005004"
+  }
+  ],
+  "CoordLocation": [
+  {
+  "name": "Østerport 5900 Rudkøbing, Langeland Kommune",
+  "x": "10717659",
+  "y": "54935274",
+  "type": "ADR"
+  },
+  {
+  "name": "Østerport 9000 Aalborg, Aalborg Kommune",
+  "x": "9947643",
+  "y": "57046085",
+  "type": "ADR"
+  },
+  {
+  "name": "Hotel Østerport, Hotel, Københavns Kommune",
+  "x": "12585411",
+  "y": "55690835",
+  "type": "POI"
+  },
+  {
+  "name": "Østerbro Tommerup St, 5690 Tommerup, Assens Kommun",
+  "x": "10187017",
+  "y": "55348373",
+  "type": "ADR"
+  },
+  {
+  "name": "Østertoften St Darum, 6740 Bramming, Esbjerg Kommu",
+  "x": "8654383",
+  "y": "55425384",
+  "type": "ADR"
+  },
+  {
+  "name": "Øster Lemvej 6940 Lem St, Ringkøbing-Skjern Kommun",
+  "x": "8429554",
+  "y": "56041217",
+  "type": "ADR"
+  },
+  {
+  "name": "Østergårdsvej Velling, 6940 Lem St, Ringkøbing-Skj",
+  "x": "8340039",
+  "y": "56034636",
+  "type": "ADR"
+  },
+  {
+  "name": "Østerled St Ladager, 4623 Lille Skensved, Køge Kom",
+  "x": "12091957",
+  "y": "55517936",
+  "type": "ADR"
+  },
+  {
+  "name": "Østermarksvej St. Lihme, 7182 Bredsten, Vejle Komm",
+  "x": "9323063",
+  "y": "55692534",
+  "type": "ADR"
+  },
+  {
+  "name": "Østerby Sportshal, Hal, Læsø Kommune",
+  "x": "11131990",
+  "y": "57309298",
+  "type": "POI"
+  }
+  ]
+  }
+  }

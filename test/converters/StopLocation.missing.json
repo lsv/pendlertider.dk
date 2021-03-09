@@ -1,0 +1,12 @@
+{
+  "LocationList": {
+    "noNamespaceSchemaLocation": "http://webapp.rejseplanen.dk/xml/rest/hafasRestLocation.xsd",
+    "StopLocation": [
+      {
+        "name": "Østerport St.",
+        "x": "12587784",
+        "id": "008600650"
+      }
+    ]
+  }
+}

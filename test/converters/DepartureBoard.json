@@ -1,0 +1,52 @@
+{
+  "DepartureBoard": {
+  "noNamespaceSchemaLocation": "http://webapp.rejseplanen.dk/xml/rest/hafasRestDepartureBoard.xsd",
+  "Departure": [
+  {
+  "name": "Bus 662",
+  "type": "BUS",
+  "stop": "Øster Gejl",
+  "time": "15:46",
+  "date": "09.03.21",
+  "id": "503002401",
+  "line": "662",
+  "messages": "2",
+  "finalStop": "Lyreskovskolen, Padborgvej",
+  "direction": "Lyreskovskolen, Padborgvej",
+  "JourneyDetailRef": {
+  "ref": "http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=572406%2F216961%2F181634%2F99986%2F86%3Fdate%3D09.03.21%26format%3Djson"
+  }
+  },
+  {
+  "name": "Bus 662",
+  "type": "BUS",
+  "stop": "Øster Gejl",
+  "time": "13:52",
+  "date": "10.03.21",
+  "id": "503002401",
+  "line": "662",
+  "messages": "2",
+  "finalStop": "Lyreskovskolen, Padborgvej",
+  "direction": "Lyreskovskolen, Padborgvej",
+  "JourneyDetailRef": {
+  "ref": "http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=475374%2F184618%2F453338%2F68211%2F86%3Fdate%3D10.03.21%26format%3Djson"
+  }
+  },
+  {
+  "name": "Bus 662",
+  "type": "BUS",
+  "stop": "Øster Gejl",
+  "time": "14:46",
+  "date": "10.03.21",
+  "id": "503002401",
+  "line": "662",
+  "messages": "2",
+  "finalStop": "Lyreskovskolen, Padborgvej",
+  "direction": "Lyreskovskolen, Padborgvej",
+  "JourneyDetailRef": {
+  "ref": "http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=511254%2F196577%2F373510%2F16337%2F86%3Fdate%3D10.03.21%26format%3Djson"
+  }
+  }
+  ]
+  }
+  }
