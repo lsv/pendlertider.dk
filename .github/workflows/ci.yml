@@ -3,11 +3,9 @@ name: ci
 on:
   push:
     branches:
-      - main
       - master
   pull_request:
     branches:
-      - main
       - master
 
 jobs:
@@ -44,3 +42,6 @@ jobs:
 
       - name: Run tests 🧪
         run: npm run test
+
+      - name: Build
+        run: npm run build

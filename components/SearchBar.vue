@@ -42,6 +42,7 @@ export default class SearchBar extends Vue {
       location.coordinate,
       this.$geolocation.coords
     )
+
     if (!dist) {
       return ''
     }
@@ -50,18 +51,19 @@ export default class SearchBar extends Vue {
   }
 
   redirect(option: StopLocation) {
-    this.$router.push(`station/departure/${option.id}`)
+    this.$router.push(`station/${option.id}/departure`)
   }
 
-  async search(name: string): Promise<void> {
+  search(name: string) {
     if (!name.length) {
       this.data = []
       return
     }
 
     this.isFetching = true
-    await this.$api.search(name)
-      .then((data: any) => {
+    this.$api
+      .search(name)
+      .then((data: Array<StopLocation>) => {
         this.data = data
       })
       .catch((error: any) => {

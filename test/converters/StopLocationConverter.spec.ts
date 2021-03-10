@@ -1,28 +1,30 @@
-import converter from '~/converters/StopLocation'
+import converter from '~/converters/StopLocationConverter'
 import { StopLocation } from '~/types'
 
-describe('converters/StopLocation', () => {
+describe('converters/StopLocationConverter', () => {
   it('can convert json', () => {
     const json = require('./StopLocation.json')
 
     const output = converter(json)
     expect(output.length).toBe(41)
 
-    const first: StopLocation = output[0]
-    expect(first.id).toBe('008600650')
-    expect(first.name).toBe('Østerport St.')
-    expect(first.x).toBe('12587784')
-    expect(first.y).toBe('55692498')
-    expect(first.coordinate.longitude).toBe(12.587784)
-    expect(first.coordinate.latitude).toBe(55.692498)
+    let element: StopLocation
 
-    const second: StopLocation = output[1]
-    expect(second.id).toBe('521000701')
-    expect(second.name).toBe('Øster Højst Skole')
-    expect(second.x).toBe('9036236')
-    expect(second.y).toBe('55000005')
-    expect(second.coordinate.longitude).toBe(9.036236)
-    expect(second.coordinate.latitude).toBe(55.000005)
+    element = output[0]
+    expect(element.id).toBe('008600650')
+    expect(element.name).toBe('Østerport St.')
+    expect(element.x).toBe('12587784')
+    expect(element.y).toBe('55692498')
+    expect(element.coordinate.longitude).toBe(12.587784)
+    expect(element.coordinate.latitude).toBe(55.692498)
+
+    element = output[1]
+    expect(element.id).toBe('521000701')
+    expect(element.name).toBe('Øster Højst Skole')
+    expect(element.x).toBe('9036236')
+    expect(element.y).toBe('55000005')
+    expect(element.coordinate.longitude).toBe(9.036236)
+    expect(element.coordinate.latitude).toBe(55.000005)
   })
 
   it('can handle single element', () => {

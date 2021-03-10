@@ -1,56 +1,103 @@
 <template>
   <section>
-    <b-loading :is-full-page="true" v-model="loading"></b-loading>
-    <template v-if="stationData && departures">
-      <h1 v-text="stationData.name"></h1>
-      <board :departures="departures"></board>
+    <b-loading v-model="loading"></b-loading>
+    <template v-if="departures">
+      <div class="switches">
+        <b-field>
+          Use train
+          <b-switch
+            v-model="useTog"
+            size="is-small"
+            @input="loadDepartures"
+          ></b-switch>
+        </b-field>
+        <b-field>
+          Use bus
+          <b-switch
+            v-model="useBus"
+            size="is-small"
+            @input="loadDepartures"
+          ></b-switch>
+        </b-field>
+        <b-field>
+          Use metro
+          <b-switch
+            v-model="useMetro"
+            size="is-small"
+            @input="loadDepartures"
+          ></b-switch>
+        </b-field>
+      </div>
+      <p v-if="nexttime" @click="resetNext">To start</p>
+      <board :rows="departures" :departure="true"></board>
+      <p @click="loadNext">Next</p>
     </template>
   </section>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { Departure } from '~/types'
-import { StopLocation } from "~/types";
-import Board from "~/components/Board.vue";
+import { DateTime } from 'luxon'
+import { StopLocation, Departure } from '~/types'
+import Board from '~/components/Board.vue'
 
 @Component({
   components: {
-    Board
-  }
+    Board,
+  },
 })
 export default class Index extends Vue {
-  @Prop([String]) readonly station!: string
+  @Prop() readonly station!: StopLocation
   loading: boolean = true
   departures: Array<Departure> = []
-  stationData: StopLocation = null
+  useTog = true
+  useBus = true
+  useMetro = true
+  reloader: any = undefined
+  nexttime: DateTime | null = null
 
-  loadStationData() {
-    this.$api.station(this.station)
-      .then((data: StopLocation) => {
-        this.stationData = data
-        return data
-      })
-      .catch((error: any) => {
-        throw error
-      })
+  resetNext() {
+    this.nexttime = null
+  }
+
+  loadNext() {
+    const element = this.departures[this.departures.length - 1]
+    this.nexttime = element.trainDate.datetime
+    this.loadDepartures()
   }
 
   loadDepartures() {
-    this.$api.departureBoard(this.station)
+    this.loading = true
+    this.$api
+      .departureBoard(
+        this.station.id,
+        this.nexttime,
+        this.useTog,
+        this.useMetro,
+        this.useBus
+      )
       .then((data: Array<Departure>) => {
         this.departures = data
-        return data
       })
       .catch((error: any) => {
         throw error
+      })
+      .finally(() => {
+        this.loading = false
       })
   }
 
   mounted() {
-    Promise.all([this.loadStationData(), this.loadDepartures()]).then((data: any) => {
-      this.loading = false
-    })
+    this.loadDepartures()
+    this.reloader = setInterval(this.loadDepartures, 30000)
   }
 }
 </script>
+
+<style scoped lang="scss">
+.switches {
+  display: flex;
+  text-align: right;
+  justify-content: flex-end;
+}
+</style>

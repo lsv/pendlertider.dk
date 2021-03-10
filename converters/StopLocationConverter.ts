@@ -1,4 +1,4 @@
-import { Coordinate, JsonType, StopLocation } from '~/types'
+import { Coordinate, StopLocation } from '~/types'
 
 function intsToCoordinate(x: string | number, y: string | number): Coordinate {
   if (typeof x === 'string') {

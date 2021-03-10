@@ -99,6 +99,12 @@ export default {
     },
   },
 
+  buefy: {
+    defaultIconPack: 'mdi',
+    materialDesignIconsHRef:
+      'https://cdn.jsdelivr.net/npm/@mdi/font@5/css/materialdesignicons.min.css',
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }

@@ -1,7 +1,7 @@
 {
-  "DepartureBoard": {
-  "noNamespaceSchemaLocation": "http://webapp.rejseplanen.dk/xml/rest/hafasRestDepartureBoard.xsd",
-  "Departure": [
-  ]
+  "DepartureBoard":{
+    "noNamespaceSchemaLocation":"http://webapp.rejseplanen.dk/xml/rest/hafasRestDepartureBoard.xsd",
+    "error":"No journeys found",
+    "$":""
   }
-  }
+}
