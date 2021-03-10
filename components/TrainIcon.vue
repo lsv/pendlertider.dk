@@ -9,8 +9,8 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class TrainIcon extends Vue {
-  @Prop() readonly type: string
-  @Prop() readonly size: string
+  @Prop() readonly type!: string
+  @Prop() readonly size!: string
 
   get imageType(): string {
     return this.type

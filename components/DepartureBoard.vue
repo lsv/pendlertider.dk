@@ -77,7 +77,7 @@ export default class Index extends Vue {
 
   loadNext() {
     const element = this.departures[this.departures.length - 1]
-    this.nexttime = element.trainDate.datetime
+    this.nexttime = element.departure.datetime
     this.loadDepartures()
   }
 

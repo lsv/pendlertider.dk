@@ -79,8 +79,8 @@ import { Departure, Journey, JourneyStop, StopLocation } from '~/types'
 
 @Component
 export default class JourneyDetail extends Vue {
-  @Prop() readonly journey: Departure
-  @Prop() readonly station: StopLocation
+  @Prop() readonly journey!: Departure
+  @Prop() readonly station!: StopLocation
   journeyDetails: Journey | null = null
   loading = true
 

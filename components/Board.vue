@@ -90,7 +90,7 @@ import { StopLocation } from '~/types'
   },
 })
 export default class Board extends Vue {
-  @Prop() readonly rows: Array<any>
+  @Prop() readonly rows!: Array<any>
   @Prop(Boolean) readonly departure = true
   @Prop() station!: StopLocation
   showdetails: boolean = false
