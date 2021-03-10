@@ -29,7 +29,13 @@
         </b-field>
       </div>
       <p v-if="nexttime" @click="resetNext">To start</p>
-      <board :rows="departures" :departure="true"></board>
+      <board
+        :rows="departures"
+        :departure="true"
+        :station="station"
+        @view-details="stopReloader"
+        @hide-details="startReloader"
+      ></board>
       <p @click="loadNext">Next</p>
     </template>
   </section>
@@ -55,6 +61,15 @@ export default class Index extends Vue {
   useMetro = true
   reloader: any = undefined
   nexttime: DateTime | null = null
+
+  stopReloader() {
+    clearInterval(this.reloader)
+    this.reloader = undefined
+  }
+
+  startReloader() {
+    this.reloader = setInterval(this.loadDepartures, 30_000)
+  }
 
   resetNext() {
     this.nexttime = null
@@ -89,7 +104,7 @@ export default class Index extends Vue {
 
   mounted() {
     this.loadDepartures()
-    this.reloader = setInterval(this.loadDepartures, 30000)
+    this.startReloader()
   }
 }
 </script>

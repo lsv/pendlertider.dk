@@ -1,4 +1,4 @@
-import { Departure } from '~/types'
+import {Departure, JourneyDate, Track} from '~/types'
 import DateFormatter from "~/converters/DateFormatter";
 
 function journeyRefToString(ref: string): string {
@@ -17,6 +17,59 @@ function journeyRefToId(ref: string): string {
   return ref
 }
 
+function departureTrack(element: any): Track {
+  let track: string | undefined = element?.track
+  let rtTrack: string | undefined = element?.rtTrack
+  let changed: boolean = false
+  if (rtTrack && !track) {
+    track = rtTrack
+  }
+
+  if (track && !rtTrack) {
+    rtTrack = track
+  }
+
+  if (track !== rtTrack) {
+    changed = true
+  }
+
+  return {
+    track,
+    rtTrack,
+    changed
+  }
+}
+
+function departureDate(element: any): JourneyDate {
+  let changed = false
+  let date = element.date
+  let time = element.time
+  if (element?.rtDate) {
+    changed = true
+    date = element.rtDate
+  }
+
+  if (element?.rtTime) {
+    changed = true
+    time = element.rtTime
+  }
+
+  let rtDatetime = undefined
+  if (changed) {
+    rtDatetime = DateFormatter.fromRejseplanen(date, time)
+  }
+
+  return {
+    date: element.date,
+    time: element.time,
+    datetime: DateFormatter.fromRejseplanen(element.date, element.time),
+    rtDate: element?.rtDate,
+    rtTime: element?.rtTime,
+    rtDatetime,
+    changed
+  }
+}
+
 export default function (json: any): Array<Departure> {
   const output: Array<Departure> = []
 
@@ -32,59 +85,14 @@ export default function (json: any): Array<Departure> {
       typeof element?.direction === 'string' &&
       typeof element?.JourneyDetailRef?.ref === 'string'
     ) {
-      let datetimeChanged = false
-      let date = element.date
-      let time = element.time
-      if (element?.rtDate) {
-        datetimeChanged = true
-        date = element.rtDate
-      }
-
-      if (element?.rtTime) {
-        datetimeChanged = true
-        time = element.rtTime
-      }
-
-      let rtDatetime = undefined
-      if (datetimeChanged) {
-        rtDatetime = DateFormatter.fromRejseplanen(date, time)
-      }
-
-      let track: string | undefined = element?.track
-      let rtTrack: string | undefined = element?.rtTrack
-      let trackChanged: boolean = false
-      if (rtTrack && !track) {
-        track = rtTrack
-      }
-
-      if (track && !rtTrack) {
-        rtTrack = track
-      }
-
-      if (track !== rtTrack) {
-        trackChanged = true
-      }
-
       output.push({
         name: element.name,
         type: element.type,
         stop: element.stop,
         id: journeyRefToId(element.JourneyDetailRef.ref),
         line: element.line,
-        trainDate: {
-          track: track,
-          rtTrack: rtTrack,
-          trackChanged: trackChanged,
-          date: element.date,
-          rtDate: element?.rtDate,
-          dateChanged: element?.rtDate === undefined ? false : element.date !== element.rtDate,
-          time: element.time,
-          rtTime: element?.rtTime,
-          timeChanged: element?.rtTime === undefined ? false : element.time !== element.rtTime,
-          datetime: DateFormatter.fromRejseplanen(element.date, element.time),
-          rtDatetime: rtDatetime,
-          datetimeChanged: datetimeChanged
-        },
+        departure: departureDate(element),
+        track: departureTrack(element),
         messages: parseInt(element.messages),
         finalStop: element.finalStop,
         direction: element.direction,
@@ -94,14 +102,14 @@ export default function (json: any): Array<Departure> {
   })
 
   function compare(a: Departure, b: Departure) {
-    let aTime = a.trainDate.datetime
-    if (a.trainDate?.rtDatetime) {
-      aTime = a.trainDate.rtDatetime
+    let aTime = a.departure.datetime
+    if (a.departure.rtDatetime) {
+      aTime = a.departure.rtDatetime
     }
 
-    let bTime = b.trainDate.datetime
-    if (b.trainDate?.rtDatetime) {
-      bTime = b.trainDate.rtDatetime
+    let bTime = b.departure.datetime
+    if (b.departure.rtDatetime) {
+      bTime = b.departure.rtDatetime
     }
 
     if (aTime < bTime) {

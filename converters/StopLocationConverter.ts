@@ -1,19 +1,5 @@
-import { Coordinate, StopLocation } from '~/types'
-
-function intsToCoordinate(x: string | number, y: string | number): Coordinate {
-  if (typeof x === 'string') {
-    x = parseInt(x)
-  }
-
-  if (typeof y === 'string') {
-    y = parseInt(y)
-  }
-
-  return {
-    latitude: y / 10 ** 6,
-    longitude: x / 10 ** 6,
-  }
-}
+import { StopLocation } from '~/types'
+import {intsToCoordinate} from "~/helpers";
 
 export default function (json: any): Array<StopLocation> {
   const output: Array<StopLocation> = []

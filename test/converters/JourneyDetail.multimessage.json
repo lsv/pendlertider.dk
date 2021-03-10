@@ -1,0 +1,81 @@
+{
+  "JourneyDetail": {
+    "noNamespaceSchemaLocation": "http://webapp.rejseplanen.dk/xml/rest/hafasRestJourneyDetail.xsd",
+    "Stop": [
+      {
+        "name": "Østerport St.",
+        "x": "12587784",
+        "y": "55692498",
+        "routeIdx": "0",
+        "depTime": "05:09",
+        "depDate": "10.03.21",
+        "rtDepDate": "10.03.21",
+        "track": "4",
+        "$": ""
+      }
+    ],
+    "JourneyName": {
+      "name": "IC 819",
+      "routeIdxFrom": "0",
+      "routeIdxTo": "38"
+    },
+    "JourneyType": {
+      "type": "IC",
+      "routeIdxFrom": "0",
+      "routeIdxTo": "38"
+    },
+    "Note": [
+      {
+        "text": "Retning: Esbjerg St.",
+        "routeIdxFrom": "0",
+        "routeIdxTo": "38"
+      },
+      {
+        "text": "kører:ti - fr, ikke 1., 2. apr, 30. apr - 18. maj 2021; også 15., 22., 29. mar, 12., 19., 26. apr",
+        "routeIdxFrom": "0",
+        "routeIdxTo": "38"
+      },
+      {
+        "text": "Pladsbillet kræves",
+        "routeIdxFrom": "0",
+        "routeIdxTo": "38"
+      },
+      {
+        "text": "Mulighed for internet",
+        "routeIdxFrom": "0",
+        "routeIdxTo": "38"
+      },
+      {
+        "text": "DSB 1'",
+        "routeIdxFrom": "0",
+        "routeIdxTo": "38"
+      }
+    ],
+    "MessageList": {
+      "Message": [
+        {
+          "Header": {
+            "$": "\nDer er pladsbilletkrav for alle rejser med InterCity- og Lyntog, samt regionaltog (inkl. Kystbanen og Øresundstog)\n"
+          },
+          "Text": {
+            "$": "\nAlle pladsbilletter koster 0 kr.  \n"
+          },
+          "Links": {
+            "Link": {
+              "url": "https://www.dsb.dk/coronavirus/pladskrav/",
+              "text": "Yderligere information"
+            }
+          }
+        },
+        {
+          "Header": {
+            "$": "\nKrav om mundbind\n"
+          },
+          "Text": {
+            "$": "\nDer er krav om mundbind på stationer, busterminaler og i al kollektiv trafik.\n"
+          }
+        }
+      ]
+    }
+  }
+}

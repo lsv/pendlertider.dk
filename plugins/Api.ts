@@ -58,7 +58,9 @@ Vue.prototype.$api = new (class implements Api {
   }
 
   journey(element: Departure): Promise<Journey> {
-    return Axios.get(`${BASEURL}/${element.journey}`)
+    const url = `http://webapp.rejseplanen.dk/bin/rest.exe${element.journey}`
+    // const url = 'http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=491526%2F184019%2F170702%2F78492%2F86%3Fdate%3D09.03.21%26format%3Djson'
+    return Axios.get(url)
       .then((data: AxiosResponse) => {
         return data.data
       })

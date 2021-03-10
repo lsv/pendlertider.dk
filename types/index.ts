@@ -3,6 +3,7 @@ import { DateTime } from 'luxon'
 export interface Coordinate {
   latitude: number
   longitude: number
+  toString(): string
 }
 
 export interface StopLocation {
@@ -13,19 +14,10 @@ export interface StopLocation {
   coordinate: Coordinate
 }
 
-export interface TrainDate {
+export interface Track {
   track: string | undefined
   rtTrack: string | undefined
-  trackChanged: boolean
-  date: string
-  rtDate: string | undefined
-  dateChanged: boolean
-  time: string
-  rtTime: string | undefined
-  timeChanged: boolean,
-  datetime: DateTime,
-  rtDatetime: DateTime | undefined,
-  datetimeChanged: boolean
+  changed: boolean
 }
 
 export interface Departure {
@@ -37,18 +29,27 @@ export interface Departure {
   messages: number
   finalStop: string
   direction: string
-  trainDate: TrainDate
+  departure: JourneyDate
+  track: Track | null
   journey: string
+}
+
+export interface JourneyDate {
+  date: string
+  time: string
+  datetime: DateTime
+  rtDate: string | undefined
+  rtTime: string | undefined
+  rtDatetime: DateTime | undefined
+  changed: boolean
 }
 
 export interface JourneyStop {
   name: string
   routeIdx: number
   coordinate: Coordinate
-  depTime: string
-  depDate: string
-  arrTime: string | null
-  arrDate: string | null
+  departure: JourneyDate | undefined
+  arrival: JourneyDate | undefined
   note: string | null
 }
 

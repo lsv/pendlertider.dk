@@ -1,0 +1,54 @@
+{
+  "JourneyDetail": {
+    "noNamespaceSchemaLocation": "http://webapp.rejseplanen.dk/xml/rest/hafasRestJourneyDetail.xsd",
+    "Stop": [
+      {
+        "name": "Solrød Strand St.",
+        "x": "12218884",
+        "y": "55533470",
+        "routeIdx": "0",
+        "depTime": "02:14",
+        "depDate": "10.03.21",
+        "rtDepDate": "10.03.21",
+        "$": ""
+      }
+    ],
+    "JourneyName": {
+      "name": "Natbus 97N",
+      "routeIdxFrom": "0",
+      "routeIdxTo": "71"
+    },
+    "JourneyType": {
+      "type": "NB",
+      "routeIdxFrom": "0",
+      "routeIdxTo": "71"
+    },
+    "JourneyLine": {
+      "line": "97N",
+      "routeIdxFrom": "0",
+      "routeIdxTo": "71"
+    },
+    "Note": [
+      {
+        "text": "Retning: Københavns Rådhusplads",
+        "routeIdxFrom": "0",
+        "routeIdxTo": "71"
+      },
+      {
+        "text": "kører:ma - fr, sø",
+        "routeIdxFrom": "0",
+        "routeIdxTo": "71"
+      }
+    ],
+    "MessageList": {
+      "Message": {
+        "Header": {
+          "$": "\nKrav om mundbind\n"
+        },
+        "Text": {
+          "$": "\nDer er krav om mundbind på stationer, busterminaler og i al kollektiv trafik.\n"
+        }
+      }
+    }
+  }
+}

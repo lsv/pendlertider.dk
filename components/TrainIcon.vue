@@ -1,6 +1,6 @@
 <template>
-  <figure class="image" :class="getSize()">
-    <img :src="icon()" :alt="type" />
+  <figure class="image" :class="imageSize">
+    <img :src="icon" :alt="imageType" />
   </figure>
 </template>
 
@@ -9,10 +9,14 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class TrainIcon extends Vue {
-  @Prop(String) readonly type!: ''
-  @Prop(String) readonly size = ''
+  @Prop() readonly type: string
+  @Prop() readonly size: string
 
-  getSize(): string {
+  get imageType(): string {
+    return this.type
+  }
+
+  get imageSize(): string {
     // @ts-ignore
     if (this.size === 'small') {
       return 'is-24x24'
@@ -31,7 +35,7 @@ export default class TrainIcon extends Vue {
     return 'is-24x24'
   }
 
-  icon(): string {
+  get icon(): string {
     return `/icons/${this.type}.svg`
   }
 }
