@@ -1,0 +1,81 @@
+{
+  "ArrivalBoard": {
+    "noNamespaceSchemaLocation": "http://webapp.rejseplanen.dk/xml/rest/hafasRestDepartureBoard.xsd",
+    "Arrival": [
+      {
+        "name":"C",
+        "type":"S",
+        "stop":"Østerport St.",
+        "time":"21:43",
+        "date":"09.03.21",
+        "id":"8600650",
+        "line":"C",
+        "messages":"1",
+        "rtTrack":"6",
+        "origin":"Frederikssund St.",
+        "JourneyDetailRef":{
+          "ref":"http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=491526%2F184019%2F170702%2F78492%2F86%3Fdate%3D09.03.21%26format%3Djson"
+        }
+      },
+      {
+        "name":"Re 1400",
+        "type":"REG",
+        "stop":"Østerport St.",
+        "time":"20:46",
+        "date":"09.03.21",
+        "id":"8600650",
+        "messages":"2",
+        "track":"3",
+        "rtTime":"20:48",
+        "rtDate":"09.03.21",
+        "rtTrack":"4",
+        "origin":"CPH Lufthavn",
+        "JourneyDetailRef":{
+          "ref":"http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=543519%2F184655%2F300818%2F30764%2F86%3Fdate%3D09.03.21%26format%3Djson"
+        }
+      },
+      {
+        "name": "Bus 662",
+        "type": "BUS",
+        "stop": "Øster Gejl",
+        "time": "15:46",
+        "date": "09.03.21",
+        "id": "503002401",
+        "line": "662",
+        "messages": "2",
+        "origin": "Lyreskovskolen, Padborgvej",
+        "JourneyDetailRef": {
+          "ref": "http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=572406%2F216961%2F181634%2F99986%2F86%3Fdate%3D09.03.21%26format%3Djson"
+        }
+      },
+      {
+        "name": "Bus 662",
+        "type": "BUS",
+        "stop": "Øster Gejl",
+        "time": "13:52",
+        "date": "10.03.21",
+        "id": "503002401",
+        "line": "662",
+        "messages": "2",
+        "origin": "Lyreskovskolen, Padborgvej",
+        "JourneyDetailRef": {
+          "ref": "http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=475374%2F184618%2F453338%2F68211%2F86%3Fdate%3D10.03.21%26format%3Djson"
+        }
+      },
+      {
+        "name": "Bus 662",
+        "type": "BUS",
+        "stop": "Øster Gejl",
+        "time": "14:46",
+        "date": "10.03.21",
+        "id": "503002401",
+        "line": "662",
+        "messages": "2",
+        "origin": "Lyreskovskolen, Padborgvej",
+        "JourneyDetailRef": {
+          "ref": "http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=511254%2F196577%2F373510%2F16337%2F86%3Fdate%3D10.03.21%26format%3Djson"
+        }
+      }
+    ]
+  }
+}

@@ -1,14 +1,14 @@
 <template>
   <section>
     <b-loading v-model="loading"></b-loading>
-    <template v-if="departures">
+    <template v-if="arrivals">
       <div class="switches">
         <b-field>
           Use train
           <b-switch
             v-model="useTog"
             size="is-small"
-            @input="loadDepartures"
+            @input="loadArrivals"
           ></b-switch>
         </b-field>
         <b-field>
@@ -16,7 +16,7 @@
           <b-switch
             v-model="useBus"
             size="is-small"
-            @input="loadDepartures"
+            @input="loadArrivals"
           ></b-switch>
         </b-field>
         <b-field>
@@ -24,14 +24,14 @@
           <b-switch
             v-model="useMetro"
             size="is-small"
-            @input="loadDepartures"
+            @input="loadArrivals"
           ></b-switch>
         </b-field>
       </div>
       <p v-if="nexttime" @click="resetNext">To start</p>
       <board
-        :rows="departures"
-        :departure="true"
+        :rows="arrivals"
+        :departure="false"
         :station="station"
         @view-details="stopReloader"
         @hide-details="startReloader"
@@ -44,7 +44,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { DateTime } from 'luxon'
-import { StopLocation, Departure } from '~/types'
+import { StopLocation, Arrival } from '~/types'
 import Board from '~/components/Board.vue'
 
 @Component({
@@ -55,7 +55,7 @@ import Board from '~/components/Board.vue'
 export default class Index extends Vue {
   @Prop() readonly station!: StopLocation
   loading: boolean = true
-  departures: Array<Departure> = []
+  arrivals: Array<Arrival> = []
   useTog = true
   useBus = true
   useMetro = true
@@ -68,7 +68,7 @@ export default class Index extends Vue {
   }
 
   startReloader() {
-    this.reloader = setInterval(this.loadDepartures, 30_000)
+    this.reloader = setInterval(this.loadArrivals, 30_000)
   }
 
   resetNext() {
@@ -76,23 +76,23 @@ export default class Index extends Vue {
   }
 
   loadNext() {
-    const element = this.departures[this.departures.length - 1]
+    const element = this.arrivals[this.arrivals.length - 1]
     this.nexttime = element.time.datetime
-    this.loadDepartures()
+    this.loadArrivals()
   }
 
-  loadDepartures() {
+  loadArrivals() {
     this.loading = true
     this.$api
-      .departureBoard(
+      .arrivalBoard(
         this.station.id,
         this.nexttime,
         this.useTog,
         this.useMetro,
         this.useBus
       )
-      .then((data: Array<Departure>) => {
-        this.departures = data
+      .then((data: Array<Arrival>) => {
+        this.arrivals = data
       })
       .catch((error: any) => {
         throw error
@@ -103,7 +103,7 @@ export default class Index extends Vue {
   }
 
   mounted() {
-    this.loadDepartures()
+    this.loadArrivals()
     this.startReloader()
   }
 }

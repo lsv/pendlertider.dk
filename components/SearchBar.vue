@@ -51,7 +51,7 @@ export default class SearchBar extends Vue {
   }
 
   redirect(option: StopLocation) {
-    this.$router.push(`station/${option.id}/departure`)
+    this.$router.push(`station/${option.id}/boards`)
   }
 
   search(name: string) {

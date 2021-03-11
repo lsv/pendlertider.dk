@@ -1,14 +1,14 @@
-import {Departure, JourneyDate, Track} from '~/types'
+import {Departure, JourneyDate, Track, Board} from '~/types'
 import DateFormatter from "~/converters/DateFormatter";
 
-function journeyRefToString(ref: string): string {
+export function journeyRefToString(ref: string): string {
   return ref.replace(
     'http://webapp.rejseplanen.dk/bin//rest.exe',
     ''
   )
 }
 
-function journeyRefToId(ref: string): string {
+export function journeyRefToId(ref: string): string {
   ref = journeyRefToString(ref)
   ref = ref.replace('/journeyDetail?ref=', '')
   ref = decodeURIComponent(ref.replace(/\+/g,  " "))
@@ -17,7 +17,7 @@ function journeyRefToId(ref: string): string {
   return ref
 }
 
-function departureTrack(element: any): Track {
+export function departureTrack(element: any): Track {
   let track: string | undefined = element?.track
   let rtTrack: string | undefined = element?.rtTrack
   let changed: boolean = false
@@ -40,7 +40,7 @@ function departureTrack(element: any): Track {
   }
 }
 
-function departureDate(element: any): JourneyDate {
+export function JourneyDateConverter(element: any): JourneyDate {
   let changed = false
   let date = element.date
   let time = element.time
@@ -70,6 +70,28 @@ function departureDate(element: any): JourneyDate {
   }
 }
 
+export function compare(a: Board, b: Board) {
+  let aTime = a.time.datetime
+  if (a.time.rtDatetime) {
+    aTime = a.time.rtDatetime
+  }
+
+  let bTime = b.time.datetime
+  if (b.time.rtDatetime) {
+    bTime = b.time.rtDatetime
+  }
+
+  if (aTime < bTime) {
+    return -1
+  }
+
+  if (bTime < aTime) {
+    return 1
+  }
+
+  return 0
+}
+
 export default function (json: any): Array<Departure> {
   const output: Array<Departure> = []
 
@@ -91,37 +113,16 @@ export default function (json: any): Array<Departure> {
         stop: element.stop,
         id: journeyRefToId(element.JourneyDetailRef.ref),
         line: element.line,
-        departure: departureDate(element),
+        time: JourneyDateConverter(element),
         track: departureTrack(element),
         messages: parseInt(element.messages),
         finalStop: element.finalStop,
         direction: element.direction,
         journey: journeyRefToString(element.JourneyDetailRef.ref),
+        cancelled: !!element?.cancelled
       })
     }
   })
-
-  function compare(a: Departure, b: Departure) {
-    let aTime = a.departure.datetime
-    if (a.departure.rtDatetime) {
-      aTime = a.departure.rtDatetime
-    }
-
-    let bTime = b.departure.datetime
-    if (b.departure.rtDatetime) {
-      bTime = b.departure.rtDatetime
-    }
-
-    if (aTime < bTime) {
-      return -1
-    }
-
-    if (bTime < aTime) {
-      return 1
-    }
-
-    return 0
-  }
 
   return output.sort(compare)
 }

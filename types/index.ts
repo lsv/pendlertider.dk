@@ -20,18 +20,27 @@ export interface Track {
   changed: boolean
 }
 
-export interface Departure {
+export interface Board {
   name: string
   type: string
   stop: string
   line: string | undefined
   id: string
   messages: number
+  journey: string
+  track: Track | null
+  time: JourneyDate
+}
+
+export interface Departure  extends Board {
   finalStop: string
   direction: string
-  departure: JourneyDate
-  track: Track | null
-  journey: string
+  cancelled: boolean
+}
+
+export interface Arrival extends Board {
+  origin: string | null
+  cancelled: boolean
 }
 
 export interface JourneyDate {
@@ -67,5 +76,6 @@ export interface Api {
   search(query: string): Promise<StopLocation[]>
   station(id: string): Promise<StopLocation>
   departureBoard(id: string, nexttime: DateTime | null, useTrain: boolean, useMetro: boolean, useBus: boolean): Promise<Departure[]>
+  arrivalBoard(id: string, nexttime: DateTime | null, useTrain: boolean, useMetro: boolean, useBus: boolean): Promise<Arrival[]>
   journey(element: Departure): Promise<Journey>
 }

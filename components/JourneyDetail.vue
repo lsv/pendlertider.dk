@@ -1,7 +1,14 @@
+<!--suppress JSUnresolvedVariable -->
 <template>
   <section>
     <b-loading v-model="loading" :full-size="false"></b-loading>
     <div v-if="journeyDetails">
+      <template v-if="journeyDetails.messages">
+        <dl v-for="message in journeyDetails.messages" class="section">
+          <dt v-text="message.header"></dt>
+          <dd v-text="message.text"></dd>
+        </dl>
+      </template>
       <b-table :data="journeyDetails.stops" narrowed striped hoverable>
         <b-table-column v-slot="props" field="type" label="Stop">
           <span
@@ -50,25 +57,6 @@
           </template>
         </b-table-column>
       </b-table>
-      <!--      <ul>-->
-      <!--        <li v-for="stop in journeyDetails.stops" :key="stop.routeIdx">-->
-      <!--          <div>-->
-      <!--            <div v-text="stop.name" :class="{ bold: isCurrentStation(stop) }"></div>-->
-      <!--            <template v-if="stop.departure">-->
-      <!--              <template v-if="stop.departure.changed">-->
-      <!--                <div v-text="stop.departure.rtDatetime.toFormat('HH:mm')" class="realtime"></div>-->
-      <!--                <div v-text="stop.departure.datetime.toFormat('HH:mm')" class="delay"></div>-->
-      <!--              </template>-->
-      <!--              <template v-else>-->
-      <!--                <div v-text="stop.departure.datetime.toFormat('HH:mm')" class="time"></div>-->
-      <!--              </template>-->
-      <!--            </template>-->
-      <!--            <template v-if="stop.arrival">-->
-      <!--              <div v-text="stop.arrival.time"></div>-->
-      <!--            </template>-->
-      <!--          </div>-->
-      <!--        </li>-->
-      <!--      </ul>-->
     </div>
   </section>
 </template>

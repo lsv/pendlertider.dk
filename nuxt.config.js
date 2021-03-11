@@ -50,7 +50,9 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    '@/assets/main.scss'
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -69,6 +71,7 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/color-mode',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -78,7 +81,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://github.com/buefy/nuxt-buefy
-    'nuxt-buefy',
+    ['nuxt-buefy', {css: false}],
     'vue-geolocation-api/nuxt',
   ],
 
@@ -103,6 +106,11 @@ export default {
     defaultIconPack: 'mdi',
     materialDesignIconsHRef:
       'https://cdn.jsdelivr.net/npm/@mdi/font@5/css/materialdesignicons.min.css',
+  },
+
+  colorMode: {
+    preference: 'system',
+    fallback: 'dark',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

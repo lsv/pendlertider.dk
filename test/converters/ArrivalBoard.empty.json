@@ -1,0 +1,7 @@
+{
+  "ArrivalBoard":{
+    "noNamespaceSchemaLocation":"http://webapp.rejseplanen.dk/xml/rest/hafasRestArrivalBoard.xsd",
+    "error":"No journeys found",
+    "$":""
+  }
+}

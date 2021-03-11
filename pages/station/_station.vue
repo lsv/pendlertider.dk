@@ -2,16 +2,11 @@
   <div class="container">
     <b-loading v-model="loading" :is-full-page="true"></b-loading>
     <section v-if="!loading">
-      <h1 class="title">
-        <nuxt-link :to="{ name: 'index' }">
-          <b-icon icon="chevron-left"></b-icon>
-        </nuxt-link>
-        <b-icon icon="star-plus"></b-icon>
-        <b-icon icon="star-minus"></b-icon>
-        <b-icon icon="star"></b-icon>
-        <b-icon icon="star-off"></b-icon>
-        <span v-text="stationData.name"></span>
-      </h1>
+      <station-name
+        :stop="stationData"
+        :backlink="true"
+        :nextlink="false"
+      ></station-name>
       <nuxt-child :station="stationData"></nuxt-child>
     </section>
   </div>
@@ -20,14 +15,19 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import { StopLocation } from '~/types'
+import StationName from '~/components/StationName.vue'
 
 @Component({
+  components: {
+    StationName,
+  },
   asyncData({ params }) {
     const station = params.station
     return { station }
   },
 })
 export default class StationId extends Vue {
+  hover: boolean = false
   loading: boolean = true
   station: string = ''
   stationData!: StopLocation
