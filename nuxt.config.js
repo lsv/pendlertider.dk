@@ -5,7 +5,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   router: {
-    base: '/pendlertider.dk/'
+    base: '/pendlertider.dk/',
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
