@@ -1,6 +1,9 @@
-# pendlertider.dk
+pendlertider.dk
+---------------
 
-## Build Setup
+Find tider på dit stoppested
+
+### Build Setup
 
 ```bash
 # install dependencies

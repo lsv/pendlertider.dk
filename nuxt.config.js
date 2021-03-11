@@ -1,3 +1,5 @@
+const STATIC_BASE = '/pendlertider.dk'
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -5,7 +7,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   router: {
-    base: '/pendlertider.dk/',
+    base: `${STATIC_BASE}/`,
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -19,10 +21,15 @@ export default {
         name: 'description',
         content: 'Find tider på dit stoppested',
       },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'Find tider på dit stoppested',
+      },
       { name: 'msapplication-TileColor', content: '#2b5797' },
       {
         name: 'msapplication-config',
-        content: '/favicons/browserconfig.xml?v=A05q6e9xN5',
+        content: `${STATIC_BASE}/favicons/browserconfig.xml?v=A05q6e9xN5`,
       },
       { name: 'theme-color', content: '#ffffff' },
     ],
@@ -30,25 +37,31 @@ export default {
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        href: '/favicons/apple-touch-icon.png?v=A05q6e9xN5',
+        href: `${STATIC_BASE}/favicons/apple-touch-icon.png?v=A05q6e9xN5`,
       },
       {
         rel: 'icon',
         sizes: '32x32',
-        href: '/favicons/favicon-32x32.png?v=A05q6e9xN5',
+        href: `${STATIC_BASE}favicons/favicon-32x32.png?v=A05q6e9xN5`,
       },
       {
         rel: 'icon',
         sizes: '16x16',
-        href: '/favicons/favicon-16x16.png?v=A05q6e9xN5',
+        href: `${STATIC_BASE}favicons/favicon-16x16.png?v=A05q6e9xN5`,
       },
-      { rel: 'manifest', href: '/favicons/site.webmanifest?v=A05q6e9xN5' },
+      {
+        rel: 'manifest',
+        href: `${STATIC_BASE}/favicons/site.webmanifest?v=A05q6e9xN5`,
+      },
       {
         rel: 'mask-icon',
-        href: '/favicons/safari-pinned-tab.svg?v=A05q6e9xN5',
+        href: `${STATIC_BASE}/favicons/safari-pinned-tab.svg?v=A05q6e9xN5`,
         color: '#000000',
       },
-      { rel: 'shortcut icon', href: '/favicons/favicon.ico?v=A05q6e9xN5' },
+      {
+        rel: 'shortcut icon',
+        href: `${STATIC_BASE}/favicons/favicon.ico?v=A05q6e9xN5`,
+      },
     ],
   },
 
