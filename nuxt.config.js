@@ -19,12 +19,12 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Find tider på dit stoppested',
+        content: 'Find tider på for stoppested',
       },
       {
         hid: 'og:description',
         property: 'og:description',
-        content: 'Find tider på dit stoppested',
+        content: 'Find tider på for stoppested',
       },
       { name: 'msapplication-TileColor', content: '#2b5797' },
       {
@@ -123,7 +123,7 @@ export default {
   },
 
   colorMode: {
-    preference: 'system',
+    preference: 'dark',
     fallback: 'dark',
   },
 

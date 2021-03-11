@@ -1,34 +1,43 @@
 <template>
-  <b-field>
-    <b-autocomplete
-      clear-on-select
-      rounded
-      :data="data"
-      placeholder="F.eks. Østerport"
-      field="title"
-      :loading="isFetching"
-      clearable
-      @typing="search"
-      @select="redirect"
-    >
-      <template slot-scope="props">
-        <div class="element">
-          <div class="name" v-text="props.option.name"></div>
-          <div class="distance">
-            <span v-text="distance(props.option)"></span> km
-          </div>
-        </div>
-      </template>
-    </b-autocomplete>
-  </b-field>
+  <div class="columns">
+    <div class="column">
+      <b-field>
+        <b-autocomplete
+          rounded
+          :data="data"
+          placeholder="F.eks. Østerport"
+          field="title"
+          :loading="isFetching"
+          clearable
+          @typing="search"
+          @select="redirect"
+        >
+          <template slot-scope="props">
+            <div class="element">
+              <div class="name" v-text="props.option.name"></div>
+              <div class="distance">
+                <span v-text="distance(props.option)"></span> km
+              </div>
+            </div>
+          </template>
+        </b-autocomplete>
+      </b-field>
+    </div>
+    <near-by class="column" style="flex-grow: 0"></near-by>
+  </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import DistanceToCoordinate from '~/converters/DistanceToCoordinate'
 import { StopLocation } from '~/types'
+import NearBy from '~/components/NearBy.vue'
 
-@Component
+@Component({
+  components: {
+    NearBy,
+  },
+})
 export default class SearchBar extends Vue {
   data: Array<StopLocation> = []
   isFetching: boolean = false
@@ -80,12 +89,15 @@ export default class SearchBar extends Vue {
 <style lang="scss" scoped>
 .element {
   display: flex;
+
   .name {
     font-weight: bold;
     flex-grow: 1;
   }
+
   .distance {
     align-self: flex-end;
+
     span {
       font-weight: bold;
     }

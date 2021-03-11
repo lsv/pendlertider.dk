@@ -1,19 +1,15 @@
 import DistanceToCoordinate from '~/converters/DistanceToCoordinate'
+import { intsToCoordinate } from '~/helpers'
 
 describe('DistanceToCoordinate', () => {
   it('will return null if position is not set', () => {
-    const source = {
-      latitude: 0,
-      longitude: 0,
-    }
+    const source = intsToCoordinate(0, 0, false)
     const distance = DistanceToCoordinate(source, null)
     expect(distance).toBe(null)
   })
   it('can calculate the distance as zero', () => {
-    const source = {
-      latitude: 0,
-      longitude: 0,
-    }
+    // noinspection PointlessArithmeticExpressionJS
+    const source = intsToCoordinate(0 * 10 ** 6, 0 * 10 ** 6, true)
 
     const target = {
       latitude: 0,

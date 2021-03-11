@@ -1,9 +1,23 @@
 import { DateTime } from 'luxon'
 
+export interface JourneyDate {
+  date: string
+  time: string
+  datetime: DateTime
+  rtDate: string | undefined
+  rtTime: string | undefined
+  rtDatetime: DateTime | undefined
+  changed: boolean
+}
+
 export interface Coordinate {
   latitude: number
   longitude: number
   toString(): string
+  getX(): number
+  getXBit(): string
+  getY(): number
+  getYBit(): string
 }
 
 export interface StopLocation {
@@ -32,7 +46,7 @@ export interface Board {
   time: JourneyDate
 }
 
-export interface Departure  extends Board {
+export interface Departure extends Board {
   finalStop: string
   direction: string
   cancelled: boolean
@@ -41,16 +55,6 @@ export interface Departure  extends Board {
 export interface Arrival extends Board {
   origin: string | null
   cancelled: boolean
-}
-
-export interface JourneyDate {
-  date: string
-  time: string
-  datetime: DateTime
-  rtDate: string | undefined
-  rtTime: string | undefined
-  rtDatetime: DateTime | undefined
-  changed: boolean
 }
 
 export interface JourneyStop {
@@ -74,8 +78,21 @@ export interface Journey {
 
 export interface Api {
   search(query: string): Promise<StopLocation[]>
+  closest(coord: Coordinate): Promise<StopLocation[]>
   station(id: string): Promise<StopLocation>
-  departureBoard(id: string, nexttime: DateTime | null, useTrain: boolean, useMetro: boolean, useBus: boolean): Promise<Departure[]>
-  arrivalBoard(id: string, nexttime: DateTime | null, useTrain: boolean, useMetro: boolean, useBus: boolean): Promise<Arrival[]>
+  departureBoard(
+    id: string,
+    nexttime: DateTime | null,
+    useTrain: boolean,
+    useMetro: boolean,
+    useBus: boolean
+  ): Promise<Departure[]>
+  arrivalBoard(
+    id: string,
+    nexttime: DateTime | null,
+    useTrain: boolean,
+    useMetro: boolean,
+    useBus: boolean
+  ): Promise<Arrival[]>
   journey(element: Departure): Promise<Journey>
 }
