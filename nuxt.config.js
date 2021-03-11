@@ -1,4 +1,4 @@
-const STATIC_BASE = '/pendlertider.dk'
+const STATIC_BASE = ''
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
