@@ -4,7 +4,11 @@
     <b-loading v-model="loading" :full-size="false"></b-loading>
     <div v-if="journeyDetails">
       <template v-if="journeyDetails.messages">
-        <dl v-for="message in journeyDetails.messages" class="section">
+        <dl
+          v-for="message in journeyDetails.messages"
+          :key="message.header"
+          class="section"
+        >
           <dt v-text="message.header"></dt>
           <dd v-text="message.text"></dd>
         </dl>

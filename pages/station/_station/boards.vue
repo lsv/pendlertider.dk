@@ -1,5 +1,12 @@
 <template>
-  <b-tabs v-model="activeTab" position="is-centered" size="is-medium" type="is-toggle" class="block" :animated="false">
+  <b-tabs
+    v-model="activeTab"
+    position="is-centered"
+    size="is-medium"
+    type="is-toggle"
+    class="block"
+    :animated="false"
+  >
     <b-tab-item key="departure" value="departure" label="Departures">
       <departure-board :station="station"></departure-board>
     </b-tab-item>
