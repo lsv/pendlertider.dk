@@ -92,7 +92,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseUrl: 'http://xmlopen.rejseplanen.dk/bin/rest.exe',
+    baseUrl: 'https://xmlopen.rejseplanen.dk/bin/rest.exe',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

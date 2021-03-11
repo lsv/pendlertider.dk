@@ -8,7 +8,7 @@ import {DateTime} from "luxon";
 import JourneyDetailConverter from "~/converters/JourneyDetailConverter";
 import ArrivalBoardConverter from "~/converters/ArrivalBoardConverter";
 
-const BASEURL = 'http://xmlopen.rejseplanen.dk/bin/rest.exe'
+const BASEURL = 'https://xmlopen.rejseplanen.dk/bin/rest.exe'
 
 Vue.prototype.$api = new (class implements Api {
   search(query: string): Promise<StopLocation[]> {
@@ -54,8 +54,7 @@ Vue.prototype.$api = new (class implements Api {
   }
 
   journey(element: Departure): Promise<Journey> {
-    const url = `http://webapp.rejseplanen.dk/bin/rest.exe${element.journey}`
-    // const url = 'http://webapp.rejseplanen.dk/bin//rest.exe/journeyDetail?ref=491526%2F184019%2F170702%2F78492%2F86%3Fdate%3D09.03.21%26format%3Djson'
+    const url = `https://webapp.rejseplanen.dk/bin/rest.exe${element.journey}`
     return Axios.get(url)
       .then((data: AxiosResponse) => {
         return data.data
