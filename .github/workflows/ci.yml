@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [15, 14]
+        node: [15]
 
     runs-on: ${{ matrix.os }}
 
