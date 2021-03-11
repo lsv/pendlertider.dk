@@ -31,7 +31,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.8.3",
     "luxon": "^1.26.0",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.3",
     "nuxt-buefy": "^0.4.4",
     "nuxt-property-decorator": "^2.9.1",
     "vue-geolocation-api": "^0.1.21",
