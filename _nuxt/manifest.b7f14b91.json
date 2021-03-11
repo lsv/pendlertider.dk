@@ -1,9 +1,8 @@
 {
   "name": "pendlertider.dk",
   "short_name": "pendlertider.dk",
-  "description": "## Build Setup",
   "icons": [],
-  "start_url": "/?standalone=true",
+  "start_url": "/pendlertider.dk/?standalone=true",
   "display": "standalone",
   "background_color": "#ffffff",
   "lang": "en"
