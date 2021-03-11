@@ -82,7 +82,7 @@ export default class NearBy extends Vue {
           this.nearbys = data
         })
         .catch((error: any) => {
-          this.data = []
+          this.nearbys = []
           throw error
         })
     } else {
