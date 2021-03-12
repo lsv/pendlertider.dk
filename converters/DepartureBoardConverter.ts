@@ -1,17 +1,14 @@
-import {Departure, JourneyDate, Track, Board} from '~/types'
-import DateFormatter from "~/converters/DateFormatter";
+import { Departure, JourneyDate, Track, Board } from '~/types'
+import DateFormatter from '~/converters/DateFormatter'
 
 export function journeyRefToString(ref: string): string {
-  return ref.replace(
-    'http://webapp.rejseplanen.dk/bin//rest.exe',
-    ''
-  )
+  return ref.replace('http://webapp.rejseplanen.dk/bin//rest.exe', '')
 }
 
 export function journeyRefToId(ref: string): string {
   ref = journeyRefToString(ref)
   ref = ref.replace('/journeyDetail?ref=', '')
-  ref = decodeURIComponent(ref.replace(/\+/g,  " "))
+  ref = decodeURIComponent(ref.replace(/\+/g, ' '))
   ref = ref.substring(0, ref.indexOf('?'))
   ref = ref.replace(/\//g, '00')
   return ref
@@ -36,7 +33,7 @@ export function departureTrack(element: any): Track {
   return {
     track,
     rtTrack,
-    changed
+    changed,
   }
 }
 
@@ -54,7 +51,7 @@ export function JourneyDateConverter(element: any): JourneyDate {
     time = element.rtTime
   }
 
-  let rtDatetime = undefined
+  let rtDatetime
   if (changed) {
     rtDatetime = DateFormatter.fromRejseplanen(date, time)
   }
@@ -66,7 +63,7 @@ export function JourneyDateConverter(element: any): JourneyDate {
     rtDate: element?.rtDate,
     rtTime: element?.rtTime,
     rtDatetime,
-    changed
+    changed,
   }
 }
 
@@ -119,7 +116,7 @@ export default function (json: any): Array<Departure> {
         finalStop: element.finalStop,
         direction: element.direction,
         journey: journeyRefToString(element.JourneyDetailRef.ref),
-        cancelled: !!element?.cancelled
+        cancelled: !!element?.cancelled,
       })
     }
   })

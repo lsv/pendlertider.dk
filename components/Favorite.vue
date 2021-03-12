@@ -1,3 +1,13 @@
+<i18n>
+{
+  "en": {
+    "no_favorites": "No favorites added, use the search and add it to favorites"
+  },
+  "da": {
+    "no_favorites": "Ingen favoriter tilføjet, brug søgefunktionen og tilføj din station til favoritter"
+  }
+}
+</i18n>
 <template>
   <section>
     <b-loading v-model="loading"></b-loading>
@@ -9,7 +19,7 @@
       </ul>
     </template>
     <template v-if="favorites.length === 0">
-      <p>No favorites added, use the search and add it to favorites</p>
+      <p v-text="$t('no_favorites')"></p>
     </template>
   </section>
 </template>

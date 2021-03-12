@@ -1,3 +1,14 @@
+<i18n>
+{
+  "en": {
+    "autocomplate_placeholder": "Ex. Østerport"
+  },
+  "da": {
+    "autocomplate_placeholder": "F.eks. Østerport"
+  }
+}
+</i18n>
+
 <template>
   <div class="columns">
     <div class="column">
@@ -5,7 +16,7 @@
         <b-autocomplete
           rounded
           :data="data"
-          placeholder="F.eks. Østerport"
+          :placeholder="$t('autocomplate_placeholder')"
           field="title"
           :loading="isFetching"
           clearable
@@ -16,7 +27,7 @@
             <div class="element">
               <div class="name" v-text="props.option.name"></div>
               <div class="distance">
-                <span v-text="distance(props.option)"></span> km
+                <span v-text="distance(props.option)"></span>
               </div>
             </div>
           </template>
@@ -56,7 +67,7 @@ export default class SearchBar extends Vue {
       return ''
     }
 
-    return dist.km.toString()
+    return dist.km.toString() + ' km'
   }
 
   redirect(option: StopLocation) {

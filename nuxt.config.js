@@ -97,7 +97,26 @@ export default {
     // https://github.com/buefy/nuxt-buefy
     ['nuxt-buefy', { css: false }],
     'vue-geolocation-api/nuxt',
+    'nuxt-i18n',
   ],
+
+  i18n: {
+    vueI18nLoader: true,
+    locales: [
+      {
+        code: 'da',
+        name: 'Dansk',
+      },
+      {
+        code: 'en',
+        name: 'English',
+      },
+    ],
+    defaultLocale: 'da',
+    vueI18n: {
+      fallbackLocale: 'da',
+    },
+  },
 
   geolocation: {
     watch: true,

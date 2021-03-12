@@ -1,0 +1,7 @@
+{
+  "JourneyDetail":{
+    "noNamespaceSchemaLocation":"http://webapp.rejseplanen.dk/xml/rest/hafasRestJourneyDetail.xsd",
+    "error":"Desværre kan din forespørgsel ikke behandles af vores server lige i øjeblikket",
+    "$":""
+  }
+}

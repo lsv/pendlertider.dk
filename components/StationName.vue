@@ -1,6 +1,6 @@
 <template>
   <h1 class="title">
-    <nuxt-link v-if="backlink" :to="{ name: 'index' }">
+    <nuxt-link v-if="backlink" :to="localePath('index')">
       <b-icon icon="chevron-left"></b-icon>
     </nuxt-link>
 
@@ -23,11 +23,16 @@
 
     <nuxt-link
       v-if="nextlink"
-      :to="{ name: 'station-station-boards', params: { station: stop.id } }"
+      :to="
+        localePath({
+          name: 'station-station-boards',
+          params: { station: stop.id },
+        })
+      "
     >
       <span v-text="stop.name"></span>
     </nuxt-link>
-    <span v-if="!nextlink" v-text="stop.name"></span>
+    <span v-else v-text="stop.name"></span>
   </h1>
 </template>
 
@@ -53,6 +58,10 @@ export default class StationName extends Vue {
 
   addFavorite() {
     getFavoritesStore(this.$store).addFavorite(this.stop)
+  }
+
+  async mounted() {
+    await getFavoritesStore(this.$store).init()
   }
 }
 </script>

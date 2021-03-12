@@ -28,7 +28,8 @@
       "@nuxtjs/axios",
       "@types/node",
       "@types/jest",
-      "@nuxtjs/color-mode"
+      "@nuxtjs/color-mode",
+      "nuxt-i18n"
     ]
   },
   "exclude": [

@@ -1,11 +1,11 @@
 import { StopLocation } from '~/types'
-import {intsToCoordinate} from "~/helpers";
+import { intsToCoordinate } from '~/helpers'
 
 export default function (json: any): Array<StopLocation> {
   const output: Array<StopLocation> = []
 
-  if (! Array.isArray(json.LocationList?.StopLocation)) {
-    json.LocationList.StopLocation = [json.LocationList?.StopLocation];
+  if (!Array.isArray(json.LocationList?.StopLocation)) {
+    json.LocationList.StopLocation = [json.LocationList?.StopLocation]
   }
 
   json.LocationList?.StopLocation?.forEach((element: any) => {

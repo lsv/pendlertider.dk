@@ -17,7 +17,7 @@ import ArrivalBoardConverter from '~/converters/ArrivalBoardConverter'
 
 const BASEURL = 'https://xmlopen.rejseplanen.dk/bin/rest.exe'
 
-Vue.prototype.$api = new (class implements Api {
+const ApiClass = new (class implements Api {
   search(query: string): Promise<StopLocation[]> {
     return Axios.get(`${BASEURL}/location?input=${query}&format=json`)
       .then((data: AxiosResponse) => {
@@ -131,11 +131,13 @@ Vue.prototype.$api = new (class implements Api {
     }
 
     if (nexttime) {
-      baseurl += `&date=${DateFormatter.toRejseplanenDate(
-        nexttime
-      )}&time=${DateFormatter.toRejseplanenTime(nexttime)}`
+      baseurl += `&date=${DateFormatter.toRejseplanenDate(nexttime)}`
+      baseurl += `&time=${DateFormatter.toRejseplanenTime(nexttime)}`
     }
 
     return baseurl
   }
 })()
+
+// noinspection JSUnusedGlobalSymbols
+Vue.prototype.$api = ApiClass

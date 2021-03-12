@@ -1,5 +1,11 @@
 import { Arrival } from '~/types'
-import {compare, journeyRefToId, JourneyDateConverter, departureTrack, journeyRefToString} from "~/converters/DepartureBoardConverter";
+import {
+  compare,
+  journeyRefToId,
+  JourneyDateConverter,
+  departureTrack,
+  journeyRefToString,
+} from '~/converters/DepartureBoardConverter'
 
 export default function (json: any): Array<Arrival> {
   const output: Array<Arrival> = []
@@ -26,7 +32,7 @@ export default function (json: any): Array<Arrival> {
         messages: parseInt(element.messages),
         origin: element.origin,
         journey: journeyRefToString(element.JourneyDetailRef.ref),
-        cancelled: !!element?.cancelled
+        cancelled: !!element?.cancelled,
       })
     }
   })

@@ -1,7 +1,22 @@
 <!--suppress JSUnresolvedVariable -->
+<i18n>
+{
+  "en": {
+    "stop_header": "Stop",
+    "arrival_time": "Arrival time",
+    "departure_time": "Departure time",
+    "no_details": "No details about this journey"
+  },
+  "da": {
+    "stop_header": "Stop",
+    "arrival_time": "Ankomst tid",
+    "departure_time": "Afgangs tid",
+    "no_details": "Ingen detaljer om denne rejse"
+  }
+}
+</i18n>
 <template>
   <section>
-    <b-loading v-model="loading" :full-size="false"></b-loading>
     <div v-if="journeyDetails">
       <template v-if="journeyDetails.messages">
         <dl
@@ -13,14 +28,20 @@
           <dd v-text="message.text"></dd>
         </dl>
       </template>
-      <b-table :data="journeyDetails.stops" narrowed striped hoverable>
-        <b-table-column v-slot="props" field="type" label="Stop">
+      <b-table
+        v-if="journeyDetails.stops.length > 0"
+        :data="journeyDetails.stops"
+        narrowed
+        striped
+        hoverable
+      >
+        <b-table-column v-slot="props" field="type" :label="$t('stop_header')">
           <span
             :class="{ bold: isCurrentStation(props.row) }"
             v-text="props.row.name"
           ></span>
         </b-table-column>
-        <b-table-column v-slot="props" field="type" label="Arrival time">
+        <b-table-column v-slot="props" field="type" :label="$t('arrival_time')">
           <template v-if="props.row.departure">
             <template v-if="props.row.departure.changed">
               <span
@@ -40,7 +61,11 @@
             </template>
           </template>
         </b-table-column>
-        <b-table-column v-slot="props" field="type" label="Departure time">
+        <b-table-column
+          v-slot="props"
+          field="type"
+          :label="$t('departure_time')"
+        >
           <template v-if="props.row.arrival">
             <template v-if="props.row.arrival.changed">
               <span
@@ -61,6 +86,7 @@
           </template>
         </b-table-column>
       </b-table>
+      <p v-else v-text="$t('no_details')"></p>
     </div>
   </section>
 </template>

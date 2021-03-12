@@ -15,7 +15,9 @@ describe('converters/DepartureBoardConverter', () => {
     expect(departure.stop).toBe('Øster Gejl')
     expect(departure.time.time).toBe('15:46')
     expect(departure.time.date).toBe('09.03.21')
-    expect(departure.time.datetime.toFormat('yyyy-MM-dd HH:mm')).toBe('2021-03-09 15:46')
+    expect(departure.time.datetime.toFormat('yyyy-MM-dd HH:mm')).toBe(
+      '2021-03-09 15:46'
+    )
     expect(departure.id).toBe('572406002169610018163400999860086')
     expect(departure.line).toBe('662')
     expect(departure.messages).toBe(2)
@@ -36,7 +38,9 @@ describe('converters/DepartureBoardConverter', () => {
     expect(departure.stop).toBe('Østerport St.')
     expect(departure.time.time).toBe('20:46')
     expect(departure.time.date).toBe('09.03.21')
-    expect(departure.time.datetime.toFormat('yyyy-MM-dd HH:mm')).toBe('2021-03-09 20:46')
+    expect(departure.time.datetime.toFormat('yyyy-MM-dd HH:mm')).toBe(
+      '2021-03-09 20:46'
+    )
     expect(departure.messages).toBe(2)
     expect(departure.finalStop).toBe('CPH Lufthavn')
     expect(departure.direction).toBe('CPH Lufthavn')
@@ -45,7 +49,9 @@ describe('converters/DepartureBoardConverter', () => {
     expect(departure.track?.changed).toBe(true)
     expect(departure.time.rtTime).toBe('20:48')
     expect(departure.time.changed).toBe(true)
-    expect(departure.time.rtDatetime?.toFormat('yyyy-MM-dd HH:mm')).toBe('2021-03-09 20:48')
+    expect(departure.time.rtDatetime?.toFormat('yyyy-MM-dd HH:mm')).toBe(
+      '2021-03-09 20:48'
+    )
     expect(departure.journey).toBe(
       '/journeyDetail?ref=543519%2F184655%2F300818%2F30764%2F86%3Fdate%3D09.03.21%26format%3Djson'
     )

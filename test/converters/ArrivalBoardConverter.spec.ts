@@ -15,7 +15,9 @@ describe('converters/ArrivalBoardConverter', () => {
     expect(arrival.stop).toBe('Øster Gejl')
     expect(arrival.time.time).toBe('15:46')
     expect(arrival.time.date).toBe('09.03.21')
-    expect(arrival.time.datetime.toFormat('yyyy-MM-dd HH:mm')).toBe('2021-03-09 15:46')
+    expect(arrival.time.datetime.toFormat('yyyy-MM-dd HH:mm')).toBe(
+      '2021-03-09 15:46'
+    )
     expect(arrival.id).toBe('572406002169610018163400999860086')
     expect(arrival.line).toBe('662')
     expect(arrival.messages).toBe(2)
@@ -35,7 +37,9 @@ describe('converters/ArrivalBoardConverter', () => {
     expect(arrival.stop).toBe('Østerport St.')
     expect(arrival.time.time).toBe('20:46')
     expect(arrival.time.date).toBe('09.03.21')
-    expect(arrival.time.datetime.toFormat('yyyy-MM-dd HH:mm')).toBe('2021-03-09 20:46')
+    expect(arrival.time.datetime.toFormat('yyyy-MM-dd HH:mm')).toBe(
+      '2021-03-09 20:46'
+    )
     expect(arrival.messages).toBe(2)
     expect(arrival.origin).toBe('CPH Lufthavn')
     expect(arrival.track?.track).toBe('3')
@@ -43,7 +47,9 @@ describe('converters/ArrivalBoardConverter', () => {
     expect(arrival.track?.changed).toBe(true)
     expect(arrival.time.rtTime).toBe('20:48')
     expect(arrival.time.changed).toBe(true)
-    expect(arrival.time.rtDatetime?.toFormat('yyyy-MM-dd HH:mm')).toBe('2021-03-09 20:48')
+    expect(arrival.time.rtDatetime?.toFormat('yyyy-MM-dd HH:mm')).toBe(
+      '2021-03-09 20:48'
+    )
     expect(arrival.journey).toBe(
       '/journeyDetail?ref=543519%2F184655%2F300818%2F30764%2F86%3Fdate%3D09.03.21%26format%3Djson'
     )

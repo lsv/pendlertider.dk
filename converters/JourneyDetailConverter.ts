@@ -1,13 +1,19 @@
-import {Journey, JourneyDate, JourneyMessage, JourneyStop} from "~/types";
-import {intsToCoordinate} from "~/helpers";
-import DateFormatter from "~/converters/DateFormatter";
+import { Journey, JourneyDate, JourneyMessage, JourneyStop } from '~/types'
+import { intsToCoordinate } from '~/helpers'
+import DateFormatter from '~/converters/DateFormatter'
 
 export default function (json: any): Journey {
-
   const messages: Array<JourneyMessage> = []
 
-  if (! Array.isArray(json.JourneyDetail.MessageList.Message)) {
-    json.JourneyDetail.MessageList.Message = [json.JourneyDetail.MessageList.Message]
+  if (!json.JourneyDetail?.MessageList) {
+    json.JourneyDetail.MessageList = {}
+    json.JourneyDetail.MessageList.Message = []
+  }
+
+  if (!Array.isArray(json.JourneyDetail?.MessageList?.Message)) {
+    json.JourneyDetail.MessageList.Message = [
+      json.JourneyDetail?.MessageList?.Message,
+    ]
   }
 
   json.JourneyDetail.MessageList.Message.forEach((message: any) => {
@@ -17,7 +23,12 @@ export default function (json: any): Journey {
     })
   })
 
-  function createTime(date: string, time: string, rtDate: string | undefined, rtTime: string | undefined): JourneyDate {
+  function createTime(
+    date: string,
+    time: string,
+    rtDate: string | undefined,
+    rtTime: string | undefined
+  ): JourneyDate {
     const datetime = DateFormatter.fromRejseplanen(date, time)
     let changed = false
     let changedDate = date
@@ -48,24 +59,38 @@ export default function (json: any): Journey {
 
   function stops(elements: any): JourneyStop[] {
     const output: Array<JourneyStop> = []
+    if (!Array.isArray(elements)) {
+      return output
+    }
+
     elements.forEach((elm: any) => {
-      let departure = undefined
+      let departure
       if (elm.depDate || elm.depTime || elm.rtDepTime || elm.rtDepDate) {
-        departure = createTime(elm?.depDate, elm?.depTime, elm?.rtDepDate, elm?.rtDepTime)
+        departure = createTime(
+          elm?.depDate,
+          elm?.depTime,
+          elm?.rtDepDate,
+          elm?.rtDepTime
+        )
       }
 
-      let arrival = undefined
+      let arrival
       if (elm.arrDate || elm.arrTime || elm.rtArrTime || elm.rtArrDate) {
-        arrival = createTime(elm?.arrDate, elm?.arrTime, elm?.rtArrDate, elm?.rtArrTime)
+        arrival = createTime(
+          elm?.arrDate,
+          elm?.arrTime,
+          elm?.rtArrDate,
+          elm?.rtArrTime
+        )
       }
 
       output.push({
-        arrival: arrival,
+        arrival,
         coordinate: intsToCoordinate(elm.x, elm.y),
-        departure: departure,
+        departure,
         name: elm.name,
         note: null, // @todo
-        routeIdx: parseInt(elm.routeIdx)
+        routeIdx: parseInt(elm.routeIdx),
       })
     })
 
@@ -73,7 +98,7 @@ export default function (json: any): Journey {
   }
 
   return {
-    stops: stops(json.JourneyDetail.Stop),
-    messages: messages,
+    stops: stops(json.JourneyDetail?.Stop),
+    messages,
   }
 }

@@ -1,4 +1,27 @@
 <!--suppress JSUnresolvedVariable -->
+<i18n>
+{
+  "en": {
+    "depart": "Depart",
+    "arrive": "Arrive",
+    "track": "Track",
+    "name": "Name",
+    "destination": "Destination",
+    "via": "Via",
+    "origin": "Origin"
+  },
+  "da": {
+    "depart": "Afgang",
+    "arrive": "Ankomst",
+    "track": "Spor",
+    "name": "Navn",
+    "destination": "Destination",
+    "via": "Via",
+    "origin": "Fra"
+  }
+}
+</i18n>
+
 <template>
   <div>
     <b-table
@@ -21,7 +44,7 @@
       <b-table-column
         v-slot="props"
         field="date"
-        :label="departure ? 'Depart' : 'Arrive'"
+        :label="isDeparture ? $t('depart') : $t('arrive')"
       >
         <template v-if="props.row.time.changed">
           <span class="realtime">
@@ -38,7 +61,7 @@
         </template>
       </b-table-column>
 
-      <b-table-column v-slot="props" field="track" label="Track">
+      <b-table-column v-slot="props" field="track" :label="$t('track')">
         <template v-if="props.row.track">
           <template v-if="props.row.track.changed">
             <span class="realtime">
@@ -56,33 +79,33 @@
         </template>
       </b-table-column>
 
-      <b-table-column v-slot="props" field="name" label="Name">
+      <b-table-column v-slot="props" field="name" :label="$t('name')">
         {{ props.row.name }}
       </b-table-column>
 
       <b-table-column
-        v-if="departure"
         v-slot="props"
+        :visible="isDeparture"
         field="finalStop"
-        label="Destination"
+        :label="$t('destination')"
       >
         {{ props.row.finalStop }}
       </b-table-column>
 
       <b-table-column
-        v-if="departure"
         v-slot="props"
+        :visible="isDeparture"
         field="direction"
-        label="Via"
+        :label="$t('via')"
       >
         {{ props.row.direction }}
       </b-table-column>
 
       <b-table-column
-        v-if="!departure"
         v-slot="props"
+        :visible="!isDeparture"
         field="origin"
-        label="Origin"
+        :label="$t('origin')"
       >
         {{ props.row.origin }}
       </b-table-column>
@@ -118,7 +141,7 @@ import { Arrival, Departure, StopLocation } from '~/types'
 })
 export default class Board extends Vue {
   @Prop() readonly rows!: Array<Arrival | Departure>
-  @Prop(Boolean) readonly departure = true
+  @Prop(Boolean) readonly departure: boolean = true
   @Prop() station!: StopLocation
   showdetails: boolean = false
 
@@ -126,17 +149,21 @@ export default class Board extends Vue {
     return props.row.type
   }
 
-  get boardRows() {
+  get isDeparture(): boolean {
+    return this.departure
+  }
+
+  get boardRows(): Array<Arrival | Departure> {
     return this.rows
   }
 
   @Emit()
-  viewDetails() {
+  viewDetails(): void {
     this.showdetails = true
   }
 
   @Emit()
-  hideDetails() {
+  hideDetails(): void {
     this.showdetails = false
   }
 }

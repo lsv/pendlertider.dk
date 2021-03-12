@@ -12,10 +12,12 @@
         has-link="true"
       >
         <nuxt-link
-          :to="{
-            name: 'station-station-boards',
-            params: { station: nearby.id },
-          }"
+          :to="
+            localePath({
+              name: 'station-station-boards',
+              params: { station: nearby.id },
+            })
+          "
           class="element"
         >
           <div class="name" v-text="nearby.name"></div>

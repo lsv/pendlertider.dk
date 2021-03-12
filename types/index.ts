@@ -96,3 +96,9 @@ export interface Api {
   ): Promise<Arrival[]>
   journey(element: Departure): Promise<Journey>
 }
+
+export type switches = {
+  useTog: boolean
+  useBus: boolean
+  useMetro: boolean
+}
