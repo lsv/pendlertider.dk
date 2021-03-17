@@ -31,8 +31,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import DepartureBoard from '~/components/DepartureBoard.ts'
-import ArrivalBoard from '~/components/ArrivalBoard.ts'
+import DepartureBoard from '~/components/DepartureBoard.js'
+import ArrivalBoard from '~/components/ArrivalBoard.js'
 import { StopLocation } from '~/types'
 
 @Component({

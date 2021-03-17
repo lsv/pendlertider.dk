@@ -55,7 +55,13 @@ import Login from '~/components/Login.vue'
 })
 export default class Navbar extends Vue {
   locales() {
+    if (!this.$i18n.locale) {
+      this.$i18n.locale = 'da'
+    }
+
+    // @ts-ignore
     return this.$i18n.locales.filter((locale) => {
+      // @ts-ignore
       return locale.code !== this.$i18n.locale
     })
   }
