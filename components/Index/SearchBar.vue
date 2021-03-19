@@ -14,7 +14,6 @@
     <div class="column">
       <b-field>
         <b-autocomplete
-          rounded
           :data="data"
           :placeholder="$t('autocomplate_placeholder')"
           field="title"
@@ -42,7 +41,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import DistanceToCoordinate from '~/converters/DistanceToCoordinate'
 import { StopLocation } from '~/types'
-import NearBy from '~/components/NearBy.vue'
+import NearBy from '~/components/Index/NearBy.vue'
 
 @Component({
   components: {
@@ -81,7 +80,7 @@ export default class SearchBar extends Vue {
     }
 
     this.isFetching = true
-    this.$api
+    this.$rejseplanApi
       .search(name)
       .then((data: Array<StopLocation>) => {
         this.data = data

@@ -1,7 +1,9 @@
-import { Api } from '~/types'
+import { RejseplanApi } from '~/types'
+import {PendlertiderApi} from "~/types/Pendlertider";
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $api: Api
+    $rejseplanApi: RejseplanApi,
+    $pendlertiderApi: PendlertiderApi
   }
 }

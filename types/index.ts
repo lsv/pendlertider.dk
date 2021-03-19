@@ -76,7 +76,7 @@ export interface Journey {
   messages: Array<JourneyMessage>
 }
 
-export interface Api {
+export interface RejseplanApi {
   search(query: string): Promise<StopLocation[]>
   closest(coord: Coordinate): Promise<StopLocation[]>
   station(id: string): Promise<StopLocation>

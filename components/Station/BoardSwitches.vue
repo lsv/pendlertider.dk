@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
-import Board from '~/components/Board.vue'
+import Board from '~/components/Station/Board.vue'
 import { switches } from '~/types'
 
 @Component({

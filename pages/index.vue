@@ -13,12 +13,12 @@
 
 <template>
   <div class="container">
-    <section class="section">
+    <section class="content section">
       <h2 class="subtitle" v-text="$t('search')"></h2>
       <search-bar></search-bar>
     </section>
 
-    <section class="section">
+    <section class="content section">
       <h2 class="subtitle" v-text="$t('favorites')"></h2>
       <favorite></favorite>
     </section>
@@ -27,8 +27,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import SearchBar from '~/components/SearchBar.vue'
-import Favorite from '~/components/Favorite.vue'
+import SearchBar from '~/components/Index/SearchBar.vue'
+import Favorite from '~/components/Index/Favorite.vue'
 
 @Component({
   components: {

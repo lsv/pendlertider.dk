@@ -32,8 +32,8 @@
 import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
 import { DateTime } from 'luxon'
 import { StopLocation, Departure, switches } from '~/types'
-import Board from '~/components/Board.vue'
-import BoardSwitches from '~/components/BoardSwitches.vue'
+import Board from '~/components/Station/Board.vue'
+import BoardSwitches from '~/components/Station/BoardSwitches.vue'
 
 @Component({
   components: {
@@ -76,7 +76,7 @@ export default class BoardMixin extends Vue {
   loadRows() {
     this.loading = true
     // @ts-ignore
-    this.$api[this.apiRoute](
+    this.$rejseplanApi[this.apiRoute](
       this.station.id,
       this.nexttime,
       this.useTog,

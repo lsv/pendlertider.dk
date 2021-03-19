@@ -110,7 +110,7 @@ export default class JourneyDetail extends Vue {
   }
 
   loadJourney() {
-    this.$api
+    this.$rejseplanApi
       .journey(this.journey)
       .then((data: Journey) => {
         this.journeyDetails = data

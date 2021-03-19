@@ -22,14 +22,17 @@
         position="is-bottom"
         multilined
       >
-        <a class="button is-primary">
+        <nuxt-link
+          class="button is-primary"
+          :to="localePath('/security/signup')"
+        >
           <strong v-text="$t('signup')"></strong>
-        </a>
+        </nuxt-link>
       </b-tooltip>
 
-      <a class="button is-light">
+      <nuxt-link class="button is-light" :to="localePath('/security/login')">
         <span v-text="$t('login')"></span>
-      </a>
+      </nuxt-link>
     </div>
   </b-navbar-item>
 </template>

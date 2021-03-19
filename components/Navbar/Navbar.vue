@@ -39,18 +39,18 @@
       <b-navbar-item tag="div">
         <p class="is-small is-italic">Coming soon --></p>
       </b-navbar-item>
-      <login></login>
+      <login-bar></login-bar>
     </template>
   </b-navbar>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import Login from '~/components/Login.vue'
+import LoginBar from '~/components/Navbar/LoginBar.vue'
 
 @Component({
   components: {
-    Login,
+    LoginBar,
   },
 })
 export default class Navbar extends Vue {

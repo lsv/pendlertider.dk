@@ -1,5 +1,5 @@
 import { Component } from 'nuxt-property-decorator'
-import BoardMixin from '~/components/BoardMixin.vue'
+import BoardMixin from '~/components/Station/BoardMixin.vue'
 
 @Component
 export default class DepartureBoard extends BoardMixin {

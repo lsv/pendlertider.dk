@@ -71,7 +71,11 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {
-      src: '~/plugins/Api.ts',
+      src: '~/plugins/RejseplanApi.ts',
+      mode: 'client',
+    },
+    {
+      src: '~/plugins/PendlertiderApi.ts',
       mode: 'client',
     },
   ],

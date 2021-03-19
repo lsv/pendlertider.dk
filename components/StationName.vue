@@ -1,5 +1,5 @@
 <template>
-  <h1 class="title">
+  <h3 class="title">
     <nuxt-link v-if="backlink" :to="localePath('index')">
       <b-icon icon="chevron-left"></b-icon>
     </nuxt-link>
@@ -33,7 +33,7 @@
       <span v-text="stop.name"></span>
     </nuxt-link>
     <span v-else v-text="stop.name"></span>
-  </h1>
+  </h3>
 </template>
 
 <script lang="ts">

@@ -34,7 +34,7 @@ export default class StationId extends Vue {
 
   loadStationData() {
     this.loading = true
-    this.$api
+    this.$rejseplanApi
       .station(this.station)
       .then((data: StopLocation) => {
         this.stationData = data

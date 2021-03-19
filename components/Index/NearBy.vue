@@ -72,7 +72,7 @@ export default class NearBy extends Vue {
       this.$geolocation.coords?.longitude &&
       this.$geolocation.coords?.latitude
     ) {
-      this.$api
+      this.$rejseplanApi
         .closest(
           intsToCoordinate(
             this.$geolocation.coords.longitude,

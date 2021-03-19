@@ -130,7 +130,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from 'nuxt-property-decorator'
 import TrainIcon from '~/components/TrainIcon.vue'
-import JourneyDetail from '~/components/JourneyDetail.vue'
+import JourneyDetail from '~/components/Station/JourneyDetail.vue'
 import { Arrival, Departure, StopLocation } from '~/types'
 
 @Component({

@@ -5,7 +5,7 @@ import StopLocationConverter from '~/converters/StopLocationConverter'
 import DepartureBoardConverter from '~/converters/DepartureBoardConverter'
 import {
   StopLocation,
-  Api,
+  RejseplanApi,
   Departure,
   Journey,
   Arrival,
@@ -17,7 +17,7 @@ import ArrivalBoardConverter from '~/converters/ArrivalBoardConverter'
 
 const BASEURL = 'https://xmlopen.rejseplanen.dk/bin/rest.exe'
 
-const ApiClass = new (class implements Api {
+const RejseplanApi = new (class implements RejseplanApi {
   search(query: string): Promise<StopLocation[]> {
     return Axios.get(`${BASEURL}/location?input=${query}&format=json`)
       .then((data: AxiosResponse) => {
@@ -140,4 +140,4 @@ const ApiClass = new (class implements Api {
 })()
 
 // noinspection JSUnusedGlobalSymbols
-Vue.prototype.$api = ApiClass
+Vue.prototype.$rejseplanApi = RejseplanApi
