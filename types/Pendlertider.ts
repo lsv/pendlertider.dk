@@ -10,10 +10,6 @@ export interface SignupForm {
   newsletter: boolean | null
 }
 
-export interface RefreshForm {
-  refresh_token: string
-}
-
 export interface UserEditEmailForm {
   email: string | null
 }
@@ -23,22 +19,17 @@ export  interface UserEditNewsletter {
 }
 
 export interface FavoriteForm {
+  uid: string
   name: string
   x_longitude: number
   y_latitude: number
 }
 
 export interface DeleteFavoriteForm {
-  id: string
-}
-
-interface Security {
-  securityLogin(form: LoginForm): Promise<any>
-  securityRefresh(form: RefreshForm): Promise<any>
+  uid: string
 }
 
 interface User {
-  UserMe(): Promise<any>
   UserSignup(form: SignupForm): Promise<any>
   UserDelete(): Promise<any>
 }
@@ -54,5 +45,5 @@ interface Favorites {
   FavoritesDelete(form: DeleteFavoriteForm): Promise<any>
 }
 
-export interface PendlertiderApi extends Security, User, UserEdit, Favorites {
+export interface PendlertiderApi extends User, UserEdit, Favorites {
 }

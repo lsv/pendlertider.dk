@@ -46,37 +46,11 @@
         field="date"
         :label="isDeparture ? $t('depart') : $t('arrive')"
       >
-        <template v-if="props.row.time.changed">
-          <span class="realtime">
-            {{ props.row.time.rtDatetime.toFormat('HH:mm') }}
-          </span>
-          <span class="changed">
-            {{ props.row.time.datetime.toFormat('HH:mm') }}
-          </span>
-        </template>
-        <template v-else>
-          <span class="normal">
-            {{ props.row.time.datetime.toFormat('HH:mm') }}
-          </span>
-        </template>
+        <journey-time :time="props.row.time"></journey-time>
       </b-table-column>
 
       <b-table-column v-slot="props" field="track" :label="$t('track')">
-        <template v-if="props.row.track">
-          <template v-if="props.row.track.changed">
-            <span class="realtime">
-              {{ props.row.track.rtTrack }}
-            </span>
-            <span class="changed">
-              {{ props.row.track.track }}
-            </span>
-          </template>
-          <template v-else>
-            <span class="normal">
-              {{ props.row.track.track }}
-            </span>
-          </template>
-        </template>
+        <journey-track :track="props.row.track"></journey-track>
       </b-table-column>
 
       <b-table-column v-slot="props" field="name" :label="$t('name')">
@@ -132,11 +106,15 @@ import { Vue, Component, Prop, Emit } from 'nuxt-property-decorator'
 import TrainIcon from '~/components/TrainIcon.vue'
 import JourneyDetail from '~/components/Station/JourneyDetail.vue'
 import { Arrival, Departure, StopLocation } from '~/types'
+import JourneyTime from "~/components/JourneyTime.vue";
+import JourneyTrack from "~/components/JourneyTrack.vue";
 
 @Component({
   components: {
     TrainIcon,
     JourneyDetail,
+    JourneyTrack,
+    JourneyTime,
   },
 })
 export default class Board extends Vue {

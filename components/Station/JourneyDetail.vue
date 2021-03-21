@@ -22,9 +22,9 @@
         <dl
           v-for="message in journeyDetails.messages"
           :key="message.header"
-          class="section"
+          class="box"
         >
-          <dt v-text="message.header"></dt>
+          <dt v-text="message.header" class="bold"></dt>
           <dd v-text="message.text"></dd>
         </dl>
       </template>
@@ -34,6 +34,7 @@
         narrowed
         striped
         hoverable
+        class="box"
       >
         <b-table-column v-slot="props" field="type" :label="$t('stop_header')">
           <span
@@ -42,51 +43,13 @@
           ></span>
         </b-table-column>
         <b-table-column v-slot="props" field="type" :label="$t('arrival_time')">
-          <template v-if="props.row.departure">
-            <template v-if="props.row.departure.changed">
-              <span
-                class="realtime"
-                v-text="props.row.departure.rtDatetime.toFormat('HH:mm')"
-              ></span>
-              <span
-                class="delay"
-                v-text="props.row.departure.datetime.toFormat('HH:mm')"
-              ></span>
-            </template>
-            <template v-else>
-              <span
-                class="time"
-                v-text="props.row.departure.datetime.toFormat('HH:mm')"
-              ></span>
-            </template>
-          </template>
+          <journey-time :time="props.row.arrival"></journey-time>
         </b-table-column>
-        <b-table-column
-          v-slot="props"
-          field="type"
-          :label="$t('departure_time')"
-        >
-          <template v-if="props.row.arrival">
-            <template v-if="props.row.arrival.changed">
-              <span
-                class="realtime"
-                v-text="props.row.arrival.rtDatetime.toFormat('HH:mm')"
-              ></span>
-              <span
-                class="delay"
-                v-text="props.row.arrival.datetime.toFormat('HH:mm')"
-              ></span>
-            </template>
-            <template v-else>
-              <span
-                class="time"
-                v-text="props.row.arrival.datetime.toFormat('HH:mm')"
-              ></span>
-            </template>
-          </template>
+        <b-table-column v-slot="props" field="type" :label="$t('departure_time')">
+          <journey-time :time="props.row.departure"></journey-time>
         </b-table-column>
       </b-table>
-      <p v-else v-text="$t('no_details')"></p>
+      <p v-else v-text="$t('no_details')" class="box bold"></p>
     </div>
   </section>
 </template>
@@ -94,8 +57,13 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { Departure, Journey, JourneyStop, StopLocation } from '~/types'
+import JourneyTime from "~/components/JourneyTime.vue";
 
-@Component
+@Component({
+  components: {
+    JourneyTime
+  }
+})
 export default class JourneyDetail extends Vue {
   @Prop() readonly journey!: Departure
   @Prop() readonly station!: StopLocation
@@ -130,12 +98,6 @@ export default class JourneyDetail extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.realtime {
-  color: red;
-}
-.delay {
-  text-decoration: line-through;
-}
 .bold {
   font-weight: bold;
 }

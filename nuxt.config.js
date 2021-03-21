@@ -78,6 +78,14 @@ export default {
       src: '~/plugins/PendlertiderApi.ts',
       mode: 'client',
     },
+    {
+      src: '~/plugins/ApiAccessor.ts',
+      mode: 'client',
+    },
+    {
+      src: '~/plugins/AuthAccessor.ts',
+      mode: 'client',
+    }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -96,6 +104,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://auth.nuxtjs.org/
+    '@nuxtjs/auth-next',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://github.com/buefy/nuxt-buefy
@@ -128,7 +138,20 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseUrl: 'https://xmlopen.rejseplanen.dk/bin/rest.exe',
+    proxy: true,
+  },
+
+  proxy: {
+    '/pendlertider/': {
+      target: 'https://api.pendlertider.dk/api',
+      pathRewrite: {'^/pendlertider/': ''},
+      withCredentials: true,
+    },
+    '/rejseplan/': {
+      target: 'https://xmlopen.rejseplanen.dk/bin/rest.exe',
+      pathRewrite: {'^/rejseplan/': ''},
+      withCredentials: false,
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -148,6 +171,41 @@ export default {
   colorMode: {
     preference: 'dark',
     fallback: 'dark',
+  },
+
+  auth: {
+    plugins: [ '~/plugins/authRedirect.js' ],
+    redirect: {
+      login: '/login',
+      logout: false,
+      callback: '/login',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        scheme: 'refresh',
+        token: {
+          property: 'token',
+          maxAge: 1800,
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          data: 'refresh_token',
+          maxAge: 60 * 60 * 24 * 30
+        },
+        user: {
+          property: 'username',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: 'https://api.pendlertider.dk/api/security/login', method: 'post' },
+          refresh: { url: 'https://api.pendlertider.dk/api/security/refresh', method: 'post' },
+          user: { url: 'https://api.pendlertider.dk/api/user', method: 'get' },
+          logout: false,
+        },
+        // autoLogout: false
+      }
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

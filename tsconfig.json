@@ -29,7 +29,9 @@
       "@types/node",
       "@types/jest",
       "@nuxtjs/color-mode",
-      "nuxt-i18n"
+      "nuxt-i18n",
+      "@nuxtjs/auth-next",
+      "buefy/types"
     ]
   },
   "exclude": [

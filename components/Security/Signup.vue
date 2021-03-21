@@ -18,8 +18,7 @@
 </i18n>
 
 <template>
-  <form>
-    <h1 v-if="signedup">Jubiii</h1>
+  <form @submit.prevent="submit">
     <form-errors :form-errors="formValidations"></form-errors>
 
     <b-field
@@ -58,8 +57,9 @@
     </b-field>
 
     <b-button
+      native-type="submit"
+      :loading="isSubmitting"
       type="is-primary"
-      @click="submit"
       v-text="$t('signup')"
     ></b-button>
   </form>

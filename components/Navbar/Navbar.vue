@@ -24,22 +24,9 @@
     </template>
 
     <template #end>
-      <b-navbar-item tag="div">
-        <b-navbar-dropdown :label="$i18n.locale">
-          <b-navbar-item
-            v-for="locale in locales()"
-            :key="locale.code"
-            tag="nuxt-link"
-            :to="switchLocalePath(locale.code)"
-          >
-            {{ locale.name }}
-          </b-navbar-item>
-        </b-navbar-dropdown>
-      </b-navbar-item>
-      <b-navbar-item tag="div">
-        <p class="is-small is-italic">Coming soon --></p>
-      </b-navbar-item>
-      <login-bar></login-bar>
+      <language-bar></language-bar>
+      <login-bar v-if="!$auth.user"></login-bar>
+      <user-bar v-else></user-bar>
     </template>
   </b-navbar>
 </template>
@@ -47,23 +34,15 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import LoginBar from '~/components/Navbar/LoginBar.vue'
+import UserBar from "~/components/Navbar/UserBar.vue";
+import LanguageBar from "~/components/Navbar/LanguageBar.vue";
 
 @Component({
   components: {
     LoginBar,
+    UserBar,
+    LanguageBar,
   },
 })
-export default class Navbar extends Vue {
-  locales() {
-    if (!this.$i18n.locale) {
-      this.$i18n.locale = 'da'
-    }
-
-    // @ts-ignore
-    return this.$i18n.locales.filter((locale) => {
-      // @ts-ignore
-      return locale.code !== this.$i18n.locale
-    })
-  }
-}
+export default class Navbar extends Vue {}
 </script>

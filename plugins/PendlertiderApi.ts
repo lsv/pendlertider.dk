@@ -1,59 +1,61 @@
-import Vue from "vue";
-import Axios from 'axios'
+import { Plugin } from '@nuxt/types'
 import {
   DeleteFavoriteForm,
   FavoriteForm,
-  LoginForm,
   PendlertiderApi,
-  RefreshForm,
   SignupForm, UserEditEmailForm, UserEditNewsletter
 } from "~/types/Pendlertider";
+import {NuxtAxiosInstance} from "@nuxtjs/axios";
 
-const BASEURL = 'https://api.pendlertider.dk/api'
-Axios.defaults.baseURL = BASEURL
-Axios.defaults.headers.common['X-Content-Lang'] = 'da'
+const Api = class implements PendlertiderApi {
+  axios: NuxtAxiosInstance;
+  constructor(axios: NuxtAxiosInstance) {
+    this.axios = axios
+  }
 
-const Api = new (class implements PendlertiderApi {
   FavoritesAdd(form: FavoriteForm): Promise<any> {
-    return Axios.post('/favorite', form)
+    return this.axios.post('/pendlertider/favorite', form)
   }
 
   FavoritesDelete(form: DeleteFavoriteForm): Promise<any> {
-    return Axios.delete(`/favorite/${form.id}`)
+    return this.axios.delete(`/pendlertider/favorite/${form.uid}`)
   }
 
   FavoritesList(): Promise<any> {
-    return Axios.get('/favorite')
+    return this.axios.get('/pendlertider/favorite')
   }
 
   UserDelete(): Promise<any> {
-    return Axios.delete('/user')
+    return this.axios.delete('/pendlertider/user')
   }
 
   UserEditEmail(form: UserEditEmailForm): Promise<any> {
-    return Axios.patch('/user/edit/email', form)
+    return this.axios.patch('/pendlertider/user/edit/email', form)
   }
 
   UserEditNewsletter(form: UserEditNewsletter): Promise<any> {
-    return Axios.patch('/user/edit/newsletter', form)
-  }
-
-  UserMe(): Promise<any> {
-    return Axios.get('/user')
+    return this.axios.patch('/pendlertider/user/edit/newsletter', form)
   }
 
   UserSignup(form: SignupForm): Promise<any> {
-    return Axios.post('/user', form)
+    return this.axios.$post('/pendlertider/user', form)
   }
+}
 
-  securityLogin(form: LoginForm): Promise<any> {
-    return Axios.post('/security/login', form)
+declare module '@nuxt/types' {
+  interface Context {
+    $pendlertiderApi: PendlertiderApi
   }
+}
 
-  securityRefresh(form: RefreshForm): Promise<any> {
-    return Axios.post('/security/refresh', form)
+declare module 'vuex/types/index' {
+  interface Store<S> {
+    $pendlertiderApi: PendlertiderApi
   }
-})
+}
 
-// noinspection JSUnusedGlobalSymbols
-Vue.prototype.$pendlertiderApi = Api
+const PendlertiderApi: Plugin = (context, inject) => {
+  inject('pendlertiderApi', new Api(context.$axios))
+}
+
+export default PendlertiderApi
