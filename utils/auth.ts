@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-mutable-exports
-let $auth
+let $auth: any
 
 export function initialize(auth) {
   // eslint-disable-next-line no-console
