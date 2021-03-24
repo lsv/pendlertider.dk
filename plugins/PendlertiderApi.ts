@@ -1,14 +1,16 @@
 import { Plugin } from '@nuxt/types'
+import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import {
   DeleteFavoriteForm,
   FavoriteForm,
   PendlertiderApi,
-  SignupForm, UserEditEmailForm, UserEditNewsletter
-} from "~/types/Pendlertider";
-import {NuxtAxiosInstance} from "@nuxtjs/axios";
+  SignupForm,
+  UserEditEmailForm,
+  UserEditNewsletter,
+} from '~/types/Pendlertider'
 
 const Api = class implements PendlertiderApi {
-  axios: NuxtAxiosInstance;
+  axios: NuxtAxiosInstance
   constructor(axios: NuxtAxiosInstance) {
     this.axios = axios
   }
@@ -43,19 +45,21 @@ const Api = class implements PendlertiderApi {
 }
 
 declare module '@nuxt/types' {
+  // noinspection JSUnusedGlobalSymbols
   interface Context {
     $pendlertiderApi: PendlertiderApi
   }
 }
 
 declare module 'vuex/types/index' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
   interface Store<S> {
     $pendlertiderApi: PendlertiderApi
   }
 }
 
-const PendlertiderApi: Plugin = (context, inject) => {
+const pp: Plugin = (context, inject) => {
   inject('pendlertiderApi', new Api(context.$axios))
 }
 
-export default PendlertiderApi
+export default pp

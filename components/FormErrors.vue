@@ -2,7 +2,7 @@
   <b-message v-if="formErrors" type="is-danger" has-icon>
     <div v-for="(messages, key) in formErrors" :key="key" class="content">
       <ul>
-        <li v-for="message in messages" :key="message" v-if="message">
+        <li v-for="message in messages" :key="message">
           <span v-text="message"></span>
         </li>
       </ul>

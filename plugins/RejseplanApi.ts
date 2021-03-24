@@ -1,5 +1,7 @@
 import { AxiosResponse } from 'axios'
 import { DateTime } from 'luxon'
+import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { Plugin } from '@nuxt/types'
 import StopLocationConverter from '~/converters/StopLocationConverter'
 import DepartureBoardConverter from '~/converters/DepartureBoardConverter'
 import {
@@ -13,20 +15,19 @@ import {
 import DateFormatter from '~/converters/DateFormatter'
 import JourneyDetailConverter from '~/converters/JourneyDetailConverter'
 import ArrivalBoardConverter from '~/converters/ArrivalBoardConverter'
-import {NuxtAxiosInstance} from "@nuxtjs/axios";
-import {Plugin} from "@nuxt/types";
 
 const Api = class implements RejseplanApi {
-  axios: NuxtAxiosInstance;
+  axios: NuxtAxiosInstance
   nobaseUrlAxios: NuxtAxiosInstance
 
   constructor(axios: NuxtAxiosInstance) {
-    this.axios = axios;
+    this.axios = axios
     this.nobaseUrlAxios = axios.create()
   }
 
   search(query: string): Promise<StopLocation[]> {
-    return this.axios.get(`/rejseplan/location?input=${query}&format=json`)
+    return this.axios
+      .get(`/rejseplan/location?input=${query}&format=json`)
       .then((data: AxiosResponse) => {
         return data.data
       })
@@ -36,9 +37,10 @@ const Api = class implements RejseplanApi {
   }
 
   closest(coord: Coordinate): Promise<StopLocation[]> {
-    return this.axios.get(
-      `/rejseplan/stopsNearby?coordX=${coord.getXBit()}&coordY=${coord.getYBit()}&format=json`
-    )
+    return this.axios
+      .get(
+        `/rejseplan/stopsNearby?coordX=${coord.getXBit()}&coordY=${coord.getYBit()}&format=json`
+      )
       .then((data: AxiosResponse) => {
         return data.data
       })
@@ -48,7 +50,8 @@ const Api = class implements RejseplanApi {
   }
 
   station(id: string): Promise<StopLocation> {
-    return this.axios.get(`/rejseplan/location?input=${id}&format=json`)
+    return this.axios
+      .get(`/rejseplan/location?input=${id}&format=json`)
       .then((data: AxiosResponse) => {
         return data.data
       })
@@ -72,7 +75,8 @@ const Api = class implements RejseplanApi {
       useMetro,
       useBus
     )
-    return this.axios.get(url)
+    return this.axios
+      .get(url)
       .then((data: AxiosResponse) => {
         return data.data
       })
@@ -96,7 +100,8 @@ const Api = class implements RejseplanApi {
       useMetro,
       useBus
     )
-    return this.axios.get(url)
+    return this.axios
+      .get(url)
       .then((data: AxiosResponse) => {
         return data.data
       })
@@ -107,7 +112,8 @@ const Api = class implements RejseplanApi {
 
   journey(element: Departure): Promise<Journey> {
     const url = `https://webapp.rejseplanen.dk/bin/rest.exe${element.journey}`
-    return this.nobaseUrlAxios.get(url)
+    return this.nobaseUrlAxios
+      .get(url)
       .then((data: AxiosResponse) => {
         return data.data
       })
@@ -146,8 +152,9 @@ const Api = class implements RejseplanApi {
   }
 }
 
-const RejseplanApi: Plugin = (context, inject) => {
+const pp: Plugin = (context, inject) => {
   inject('rejseplanApi', new Api(context.$axios))
 }
 
-export default RejseplanApi
+// noinspection JSUnusedGlobalSymbols
+export default pp

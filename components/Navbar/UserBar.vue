@@ -27,12 +27,12 @@
         </b-button>
       </template>
       <b-dropdown-item has-link>
-        <nuxt-link :to="localePath({name: 'index'})">
+        <nuxt-link :to="localePath({ name: 'index' })">
           <b-icon icon="account-settings"></b-icon>
           <span v-text="$t('edit')"></span>
         </nuxt-link>
       </b-dropdown-item>
-      <hr class="dropdown-divider">
+      <hr class="dropdown-divider" />
       <b-dropdown-item custom>
         <form @submit.prevent="logout">
           <b-button
@@ -59,7 +59,7 @@ export default class UserBar extends Vue {
     await this.$auth.logout().then(() => {
       this.$buefy.toast.open({
         type: 'is-success',
-        message: this.$tc('logged_out')
+        message: this.$tc('logged_out'),
       })
     })
   }

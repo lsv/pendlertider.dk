@@ -1,6 +1,7 @@
-import {Action, Module, Mutation, VuexModule} from 'vuex-module-decorators'
-import {StopLocation} from '~/types'
-import {$api} from '~/utils/pendlertider'
+import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
+import { StopLocation } from '~/types'
+import { $api } from '~/utils/pendlertider'
+import { $auth } from '~/utils/auth.js'
 
 @Module({
   name: 'Favorites',
@@ -17,14 +18,14 @@ export default class Favorites extends VuexModule {
 
     async function userApi() {
       await $api.FavoritesAdd({
-        uid: favorite.id,
-        x_longitude: parseFloat(favorite.x),
-        y_latitude: parseFloat(favorite.y),
-        name: favorite.name
+        stationId: favorite.id,
+        xLongitude: parseFloat(favorite.x),
+        yLatitude: parseFloat(favorite.y),
+        name: favorite.name,
       })
     }
 
-    if (this.$auth.user) {
+    if ($auth.user) {
       userApi().then()
     } else {
       localStorage.setItem('favorites', JSON.stringify(this.favorites))
@@ -35,7 +36,7 @@ export default class Favorites extends VuexModule {
   removeFavorite(favorite: StopLocation) {
     async function userApi() {
       await $api.FavoritesDelete({
-        uid: favorite.id
+        uid: favorite.id,
       })
     }
 
@@ -51,19 +52,21 @@ export default class Favorites extends VuexModule {
 
   @Mutation
   setFavorites(favorites: StopLocation[]) {
-    async function userApi() {
+    function userApi() {
       favorites.forEach((favorite) => {
-        $api.FavoritesAdd({
-          uid: favorite.id,
-          x_longitude: parseFloat(favorite.x),
-          y_latitude: parseFloat(favorite.y),
-          name: favorite.name
-        })
+        $api
+          .FavoritesAdd({
+            stationId: favorite.id,
+            xLongitude: parseFloat(favorite.x),
+            yLatitude: parseFloat(favorite.y),
+            name: favorite.name,
+          })
+          .then()
       })
     }
 
-    if (this.$auth.user) {
-      userApi().then()
+    if ($auth.user) {
+      userApi()
     } else {
       this.favorites = favorites
       localStorage.setItem('favorites', JSON.stringify(this.favorites))
@@ -111,9 +114,10 @@ export default class Favorites extends VuexModule {
       await $api.FavoritesList()
     }
 
-    if (this.$auth.user) {
+    if ($auth.user) {
       userApi()
         .then((response) => {
+          // eslint-disable-next-line no-console
           console.log('api favs', response)
           return response
         })
@@ -132,7 +136,5 @@ export default class Favorites extends VuexModule {
       this.context.commit('setFavorites', favs)
       this.context.commit('setInitialized', true)
     }
-
-
   }
 }

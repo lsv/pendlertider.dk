@@ -106,8 +106,8 @@ import { Vue, Component, Prop, Emit } from 'nuxt-property-decorator'
 import TrainIcon from '~/components/TrainIcon.vue'
 import JourneyDetail from '~/components/Station/JourneyDetail.vue'
 import { Arrival, Departure, StopLocation } from '~/types'
-import JourneyTime from "~/components/JourneyTime.vue";
-import JourneyTrack from "~/components/JourneyTrack.vue";
+import JourneyTime from '~/components/JourneyTime.vue'
+import JourneyTrack from '~/components/JourneyTrack.vue'
 
 @Component({
   components: {

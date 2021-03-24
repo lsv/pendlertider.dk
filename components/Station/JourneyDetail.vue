@@ -24,7 +24,7 @@
           :key="message.header"
           class="box"
         >
-          <dt v-text="message.header" class="bold"></dt>
+          <dt class="bold" v-text="message.header"></dt>
           <dd v-text="message.text"></dd>
         </dl>
       </template>
@@ -45,11 +45,15 @@
         <b-table-column v-slot="props" field="type" :label="$t('arrival_time')">
           <journey-time :time="props.row.arrival"></journey-time>
         </b-table-column>
-        <b-table-column v-slot="props" field="type" :label="$t('departure_time')">
+        <b-table-column
+          v-slot="props"
+          field="type"
+          :label="$t('departure_time')"
+        >
           <journey-time :time="props.row.departure"></journey-time>
         </b-table-column>
       </b-table>
-      <p v-else v-text="$t('no_details')" class="box bold"></p>
+      <p v-else class="box bold" v-text="$t('no_details')"></p>
     </div>
   </section>
 </template>
@@ -57,12 +61,12 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { Departure, Journey, JourneyStop, StopLocation } from '~/types'
-import JourneyTime from "~/components/JourneyTime.vue";
+import JourneyTime from '~/components/JourneyTime.vue'
 
 @Component({
   components: {
-    JourneyTime
-  }
+    JourneyTime,
+  },
 })
 export default class JourneyDetail extends Vue {
   @Prop() readonly journey!: Departure

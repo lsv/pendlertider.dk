@@ -85,7 +85,7 @@ export default {
     {
       src: '~/plugins/AuthAccessor.ts',
       mode: 'client',
-    }
+    },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -144,12 +144,12 @@ export default {
   proxy: {
     '/pendlertider/': {
       target: 'https://api.pendlertider.dk/api',
-      pathRewrite: {'^/pendlertider/': ''},
+      pathRewrite: { '^/pendlertider/': '' },
       withCredentials: true,
     },
     '/rejseplan/': {
       target: 'https://xmlopen.rejseplanen.dk/bin/rest.exe',
-      pathRewrite: {'^/rejseplan/': ''},
+      pathRewrite: { '^/rejseplan/': '' },
       withCredentials: false,
     },
   },
@@ -174,12 +174,12 @@ export default {
   },
 
   auth: {
-    plugins: [ '~/plugins/authRedirect.js' ],
+    plugins: ['~/plugins/authRedirect.js'],
     redirect: {
       login: '/login',
       logout: false,
       callback: '/login',
-      home: '/'
+      home: '/',
     },
     strategies: {
       local: {
@@ -191,21 +191,27 @@ export default {
         refreshToken: {
           property: 'refresh_token',
           data: 'refresh_token',
-          maxAge: 60 * 60 * 24 * 30
+          maxAge: 60 * 60 * 24 * 30,
         },
         user: {
           property: 'username',
           // autoFetch: true
         },
         endpoints: {
-          login: { url: 'https://api.pendlertider.dk/api/security/login', method: 'post' },
-          refresh: { url: 'https://api.pendlertider.dk/api/security/refresh', method: 'post' },
+          login: {
+            url: 'https://api.pendlertider.dk/api/security/login',
+            method: 'post',
+          },
+          refresh: {
+            url: 'https://api.pendlertider.dk/api/security/refresh',
+            method: 'post',
+          },
           user: { url: 'https://api.pendlertider.dk/api/user', method: 'get' },
           logout: false,
         },
         // autoLogout: false
-      }
-    }
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

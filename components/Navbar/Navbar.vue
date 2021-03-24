@@ -34,8 +34,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import LoginBar from '~/components/Navbar/LoginBar.vue'
-import UserBar from "~/components/Navbar/UserBar.vue";
-import LanguageBar from "~/components/Navbar/LanguageBar.vue";
+import UserBar from '~/components/Navbar/UserBar.vue'
+import LanguageBar from '~/components/Navbar/LanguageBar.vue'
 
 @Component({
   components: {

@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import {Track} from "~/types";
+import { Track } from '~/types'
 @Component
 export default class JourneyTrack extends Vue {
   @Prop() readonly track!: Track

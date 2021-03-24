@@ -29,14 +29,19 @@
       <b-input v-model="form.password" type="password" required></b-input>
     </b-field>
 
-    <b-button :loading="isSubmitting" native-type="submit" type="is-primary" v-text="$t('login')"></b-button>
+    <b-button
+      :loading="isSubmitting"
+      native-type="submit"
+      type="is-primary"
+      v-text="$t('login')"
+    ></b-button>
   </form>
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'nuxt-property-decorator'
-import {LoginForm} from "~/types/Pendlertider";
-import {getFavoritesStore} from "~/store";
+import { Component, Vue } from 'nuxt-property-decorator'
+import { LoginForm } from '~/types/Pendlertider'
+import { getFavoritesStore } from '~/store'
 
 @Component
 export default class Signup extends Vue {
@@ -49,7 +54,8 @@ export default class Signup extends Vue {
 
   async submit() {
     this.isSubmitting = true
-    await this.$auth.loginWith('local', {data: this.form})
+    await this.$auth
+      .loginWith('local', { data: this.form })
       .then(() => {
         return getFavoritesStore(this.$store).userLogin()
       })

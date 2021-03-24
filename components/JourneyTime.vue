@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import {JourneyDate} from "~/types";
+import { JourneyDate } from '~/types'
 @Component
 export default class JourneyTime extends Vue {
   @Prop() readonly time!: JourneyDate

@@ -66,10 +66,12 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import FormErrors from '~/components/FormErrors.vue'
-import {SignupForm} from "~/types/Pendlertider";
-import FormErrorsConverter, {FormErrorsInterface} from "~/converters/FormErrorsConverter";
+import { SignupForm } from '~/types/Pendlertider'
+import FormErrorsConverter, {
+  FormErrorsInterface,
+} from '~/converters/FormErrorsConverter'
 
 @Component({
   components: {
@@ -107,7 +109,8 @@ export default class Signup extends Vue {
 
   async submit() {
     this.isSubmitting = true
-    await this.$pendlertiderApi.UserSignup(this.form)
+    await this.$pendlertiderApi
+      .UserSignup(this.form)
       .then(() => {
         this.signedup = true
         // redirect
@@ -119,10 +122,12 @@ export default class Signup extends Vue {
         }
 
         this.formValidations = FormErrorsConverter({
-          validations: [{
-            field: 'e',
-            errors: ['Unknown error', e?.response?.status]
-          }]
+          validations: [
+            {
+              field: 'e',
+              errors: ['Unknown error', e?.response?.status],
+            },
+          ],
         })
       })
       .finally(() => {

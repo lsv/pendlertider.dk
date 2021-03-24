@@ -13,7 +13,7 @@ interface JsonValidation {
 
 export default function (json: JsonValidation): FormErrorsInterface | null {
   if (Array.isArray(json?.validations)) {
-    let errors = {}
+    const errors = {}
     json.validations.forEach((validations: ValidationInterface) => {
       // @ts-ignore
       errors[validations.field] = validations.errors

@@ -1,16 +1,16 @@
 <template>
-    <b-navbar-item tag="div">
-      <b-navbar-dropdown :label="currentLocale()">
-        <b-navbar-item
-          v-for="locale in locales()"
-          :key="locale.code"
-          tag="nuxt-link"
-          :to="switchLocalePath(locale.code)"
-        >
-          <span v-text="locale.name"></span>
-        </b-navbar-item>
-      </b-navbar-dropdown>
-    </b-navbar-item>
+  <b-navbar-item tag="div">
+    <b-navbar-dropdown :label="currentLocale()">
+      <b-navbar-item
+        v-for="locale in locales()"
+        :key="locale.code"
+        tag="nuxt-link"
+        :to="switchLocalePath(locale.code)"
+      >
+        <span v-text="locale.name"></span>
+      </b-navbar-item>
+    </b-navbar-dropdown>
+  </b-navbar-item>
 </template>
 
 <script lang="ts">

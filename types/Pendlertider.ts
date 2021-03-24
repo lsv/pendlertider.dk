@@ -14,15 +14,15 @@ export interface UserEditEmailForm {
   email: string | null
 }
 
-export  interface UserEditNewsletter {
+export interface UserEditNewsletter {
   newsletter: boolean
 }
 
 export interface FavoriteForm {
-  uid: string
+  stationId: string
   name: string
-  x_longitude: number
-  y_latitude: number
+  xLongitude: number
+  yLatitude: number
 }
 
 export interface DeleteFavoriteForm {
@@ -45,5 +45,4 @@ interface Favorites {
   FavoritesDelete(form: DeleteFavoriteForm): Promise<any>
 }
 
-export interface PendlertiderApi extends User, UserEdit, Favorites {
-}
+export interface PendlertiderApi extends User, UserEdit, Favorites {}
