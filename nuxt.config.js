@@ -78,14 +78,6 @@ export default {
       src: '~/plugins/PendlertiderApi.ts',
       mode: 'client',
     },
-    {
-      src: '~/plugins/ApiAccessor.ts',
-      mode: 'client',
-    },
-    {
-      src: '~/plugins/AuthAccessor.ts',
-      mode: 'client',
-    },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -174,7 +166,7 @@ export default {
   },
 
   auth: {
-    plugins: ['~/plugins/authRedirect.js'],
+    plugins: ['~/plugins/authRedirect.js', '~/plugins/AuthAccessor.js'],
     redirect: {
       login: '/login',
       logout: false,
